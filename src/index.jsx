@@ -1,17 +1,18 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import App from './app.jsx';
+import React from 'react'
+import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import rootReducer from './reducers'
+import App from './app.jsx'
 
-render( <AppContainer><App/></AppContainer>, document.querySelector("#app"));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
-if (module && module.hot) {
-  module.hot.accept('./app', () => {
-    render(
-      <AppContainer>
-        <App/>
-      </AppContainer>,
-      document.querySelector("#app")
-    );
-  });
-}
+render(
+  <Provider store={store}>
+    <AppContainer><App /></AppContainer>
+  </Provider>,
+  document.querySelector("#app")
+)

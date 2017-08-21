@@ -1,9 +1,10 @@
-import moviesReducer from './movies';
+import { expect } from 'chai';
+import moviesReducer from './movies'
 
 describe('Movies reducer', () => {
-  describe('should set initial settings', () => {
+  it('should set initial settings', () => {
+    const data = {any: 'any'}
 
-  });
-});
-
-const initialState = {isFetching: false, items: []};
+    expect(moviesReducer(data)).to.deep.equal({any: 'any'})
+  })
+})
