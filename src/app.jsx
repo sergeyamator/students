@@ -1,14 +1,31 @@
-import React from 'react';
-import '../styles/index.scss';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { moviesActions } from './actions';
 
-export default class App extends React.Component {
+function mapStateToProps(state) {
+  return {
+    state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getMovies: searchText => {
+      dispatch(moviesActions.fetchMovies(searchText));
+    }
+  };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class App extends Component {
+  componentDidMount() {
+    this.props.getMovies('movie');
+  }
   render() {
     return (
       <div>
-        <h1>It Works!</h1>
-        <p>This React project just works including <span className="redBg">module</span> local styles.</p>
-        <p>Enjoy!</p>
+        hi
       </div>
-    )
+    );
   }
 }
