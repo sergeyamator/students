@@ -1,9 +1,3 @@
-<<<<<<<<< Temporary merge branch 1
-import { expect } from 'chai';
-
-import moviesReducer from './movies'
-import {moviesActions} from '../actions'
-=========
 import {expect} from 'chai';
 
 import moviesReducer from './movies';
@@ -42,4 +36,3 @@ describe('Movies reducer', () => {
     });
   });
 });
->>>>>>>>> Temporary merge branch 2
