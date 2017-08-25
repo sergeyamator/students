@@ -1,27 +1,38 @@
 import {expect} from 'chai';
 
 import moviesReducer from './movies';
-import {moviesActions} from '../actions';
 
 describe('Movies reducer', () => {
   let state;
 
   beforeEach(() => {
-    state = {any: 'any'};
+    state = {};
   });
 
   it('should set initial settings', () => {
+    state = {any: 'any'};
     expect(moviesReducer(state, {})).to.deep.equal({any: 'any'});
   });
 
   it('should save movies to the state', () => {
-    expect(moviesReducer(state, moviesActions.fetchMovies('vamp'))).to.deep.equal({any: 'any'});
+    const action = {
+      type: 'RECEIVE_MOVIE',
+      movies: 'any'
+    };
+
+    expect(moviesReducer(state, action)).to.deep.equal({
+      isFetching: false,
+      movies: 'any'
+    });
   });
 
-  it('should disable isfetching state', () => {
-    const movies = 'any';
-    expect(moviesReducer(state, moviesActions.receiveMovies(movies))).to.deep.equal({
-      isFetching: false,
+  it('should fetch movies', () => {
+    const action = {
+      type: 'REQUEST_MOVIE'
+    };
+
+    expect(moviesReducer(state, action)).to.deep.equal({
+      isFetching: true
     });
   });
 });

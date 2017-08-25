@@ -1,3 +1,3 @@
-import * as moviesActions from './movies';
+import * as moviesActions from './movies'
 
-export {moviesActions};
+export {moviesActions}
