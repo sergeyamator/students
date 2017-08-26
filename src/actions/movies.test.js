@@ -4,17 +4,25 @@ import thunk from 'redux-thunk';
 
 import nock from 'nock';
 import {moviesActions} from '../actions';
+import config from '../config';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('async actions', () => {
-  let movies;
+describe('actions', () => {
+  let results;
 
-  describe('fetchMovies', () => {
-    beforeEach(() => {
-      movies = {
-        'results': [
+  describe('async actions', () => {
+    let store;
+
+    describe('fetchMovies', () => {
+      afterEach(() => {
+        nock.cleanAll()
+      });
+
+      beforeEach(() => {
+        store = mockStore({isFetching: false, items: []});
+        results = [
           {
             "original_name": "Vamp",
             "id": 36951,
@@ -54,25 +62,55 @@ describe('async actions', () => {
             "release_date": "1986-07-18"
           }
         ]
-      }
-    });
 
-    it('should dispatch RECEIVE_MOVIE when fetching is done', () => {
-      const query = 'vamp';
-
-      nock('https://api.themoviedb.org/3')
-        .get('/search/multi?api_key=3d34828e5c71c80272fde06fbd627191&query=vamp')
-        .reply(200, movies);
-
-      const store = mockStore({isFetching: false, items: []});
-      const expectedActions = [
-        {type: 'REQUEST_MOVIE'},
-        {type: 'RECEIVE_MOVIE', movies}
-      ];
-
-      store.dispatch(moviesActions.fetchMovies(query)).then(() => {
-        expect(store.getActions()).to.deep.equal(expectedActions);
       });
+
+      it('should dispatch RECEIVE_MOVIE when fetching is done', () => {
+        const query = 'vamp';
+
+        nock(config.baseMovieUrl)
+          .get(`${config.multiSearchUrl}${query}`)
+          .reply(200, {results});
+
+        const expectedActions = [
+          {type: 'REQUEST_MOVIE', isFetching: true},
+          {type: 'RECEIVE_MOVIE', movies: results, isFetching: false}
+        ];
+
+        return store.dispatch(moviesActions.fetchMovies(query)).then(() => {
+          expect(store.getActions()).to.eql(expectedActions);
+        });
+      });
+
+      it('should dispatch RECEIVE_FAILED when fetching is failed', () => {
+        const query = 'vamp';
+        const expectedActions = [
+          {type: 'REQUEST_MOVIE', isFetching: true},
+          {type: 'RECEIVE_FAILED', movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
+        ];
+
+        nock(config.baseMovieUrl)
+          .get(`${config.multiSearchUrl}${query}`)
+          .replyWithError({'message': 'something awful happened', 'code': 'AWFUL_ERROR'});
+
+        return store.dispatch(moviesActions.fetchMovies(query)).then(() => {
+
+          expect(store.getActions()).to.eql(expectedActions);
+        });
+      })
     });
   });
+
+  describe('sync actions', () => {
+    it('should return receive error action', () => {
+      const error = {message: 'error'};
+
+      expect(moviesActions.receiveFailed(error)).to.eql({
+        type: 'RECEIVE_FAILED',
+        movies: [],
+        error: 'error',
+        isFetching: false
+      })
+    });
+  })
 });

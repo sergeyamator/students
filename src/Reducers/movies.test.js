@@ -11,7 +11,7 @@ describe('Movies reducer', () => {
 
   it('should set initial settings', () => {
     state = {any: 'any'};
-    expect(moviesReducer(state, {})).to.deep.equal({any: 'any'});
+    expect(moviesReducer(state, {})).to.eql({any: 'any'});
   });
 
   it('should save movies to the state', () => {
@@ -20,7 +20,7 @@ describe('Movies reducer', () => {
       movies: 'any'
     };
 
-    expect(moviesReducer(state, action)).to.deep.equal({
+    expect(moviesReducer(state, action)).to.eql({
       isFetching: false,
       movies: 'any'
     });
@@ -31,7 +31,7 @@ describe('Movies reducer', () => {
       type: 'REQUEST_MOVIE'
     };
 
-    expect(moviesReducer(state, action)).to.deep.equal({
+    expect(moviesReducer(state, action)).to.eql({
       isFetching: true
     });
   });
