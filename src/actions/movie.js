@@ -1,10 +1,10 @@
 import config from '../config';
 import fetch from 'isomorphic-fetch';
 
-const receiveMovies = movies => {
+const receiveMovie = movie => {
   return {
-    type: 'RECEIVE_MOVIES',
-    movies: movies.results,
+    type: 'RECEIVE_MOVIE',
+    movie: movie.result,
     isFetching: false
   };
 };
@@ -12,24 +12,26 @@ const receiveMovies = movies => {
 const receiveFailed = error => {
   return {
     type: 'RECEIVE_FAILED',
-    movies: [],
+    movie: null,
     error: error.message,
     isFetching: false
-  }
+  };
 };
 
-const fetchMovies = movie => dispatch => {
+const fetchMovie = id => dispatch => {
   dispatch({
-    type: 'REQUEST_MOVIES',
+    type: 'REQUEST_MOVIE',
     isFetching: true
   });
 
-  return fetch(config.searchMovieUrl + movie)
+  const getVideoById = `${config.baseMovieUrl}${config.queryMovieById}${id}${config.apiKey}`;
+
+  return fetch(getVideoById)
     .then(response => response.json())
-    .then(res => dispatch(receiveMovies(res)))
+    .then(res => dispatch(receiveMovie(res)))
     .catch(err => dispatch(receiveFailed(err)));
 };
 
-export {fetchMovies};
-export {receiveMovies};
+export {fetchMovie};
+export {receiveMovie};
 export {receiveFailed};

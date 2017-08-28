@@ -1,18 +1,18 @@
-const initialState = {isFetching: false, movies: [], currentMovie: null};
+const initialState = {currentMovie: null};
 
 export default (state = initialState, action) => {
-  if (action.type === 'REQUEST_MOVIES') {
+  if (action.type === 'REQUEST_MOVIE') {
     return {
       ...state,
       isFetching: true
     };
   }
 
-  if (action.type === 'RECEIVE_MOVIES') {
+  if (action.type === 'RECEIVE_MOVIE') {
     return {
       ...state,
       isFetching: false,
-      movies: action.movies
+      movie: action.movie
     };
   }
 

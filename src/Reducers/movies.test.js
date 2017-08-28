@@ -16,7 +16,7 @@ describe('Movies reducer', () => {
 
   it('should save movies to the state', () => {
     const action = {
-      type: 'RECEIVE_MOVIE',
+      type: 'RECEIVE_MOVIES',
       movies: 'any'
     };
 
@@ -28,7 +28,7 @@ describe('Movies reducer', () => {
 
   it('should fetch movies', () => {
     const action = {
-      type: 'REQUEST_MOVIE'
+      type: 'REQUEST_MOVIES'
     };
 
     expect(moviesReducer(state, action)).to.eql({

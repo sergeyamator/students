@@ -15,54 +15,53 @@ describe('actions', () => {
   describe('async actions', () => {
     let store;
 
-    describe('fetchMovies', () => {
+    describe('fetch movies by query', () => {
       afterEach(() => {
-        nock.cleanAll()
+        nock.cleanAll();
       });
 
       beforeEach(() => {
         store = mockStore({isFetching: false, items: []});
         results = [
           {
-            "original_name": "Vamp",
-            "id": 36951,
-            "media_type": "tv",
-            "name": "Vamp",
-            "vote_count": 0,
-            "vote_average": 0,
-            "poster_path": null,
-            "first_air_date": "",
-            "popularity": 1.115845,
-            "genre_ids": [],
-            "original_language": "en",
-            "backdrop_path": null,
-            "overview": "Vamp is a Brazilian telenovela produced and displayed at the time of 19 hours by Rede Globo, July 15, 1991 to February 8, 1992 in 179 chapters.",
-            "origin_country": [
-              "BR"
+            'original_name': 'Vamp',
+            'id': 36951,
+            'media_type': 'tv',
+            'name': 'Vamp',
+            'vote_count': 0,
+            'vote_average': 0,
+            'poster_path': null,
+            'first_air_date': '',
+            'popularity': 1.115845,
+            'genre_ids': [],
+            'original_language': 'en',
+            'backdrop_path': null,
+            'overview': 'Vamp is a Brazilian telenovela produced and displayed at the time of 19 hours by Rede Globo, July 15, 1991 to February 8, 1992 in 179 chapters.',
+            'origin_country': [
+              'BR'
             ]
           },
           {
-            "vote_average": 5.8,
-            "vote_count": 37,
-            "id": 34223,
-            "video": false,
-            "media_type": "movie",
-            "title": "Vamp",
-            "popularity": 1.406536,
-            "poster_path": "/1FwNTDIAVyZy83esTsDVuL1xwIo.jpg",
-            "original_language": "en",
-            "original_title": "Vamp",
-            "genre_ids": [
+            'vote_average': 5.8,
+            'vote_count': 37,
+            'id': 34223,
+            'video': false,
+            'media_type': 'movie',
+            'title': 'Vamp',
+            'popularity': 1.406536,
+            'poster_path': '/1FwNTDIAVyZy83esTsDVuL1xwIo.jpg',
+            'original_language': 'en',
+            'original_title': 'Vamp',
+            'genre_ids': [
               35,
               27
             ],
-            "backdrop_path": "/iHZgOAXu9vRkagvmbtc1jTDUpqs.jpg",
-            "adult": false,
-            "overview": "Two fraternity pledges go to a sleazy bar looking for strippers to entertain their college friends.",
-            "release_date": "1986-07-18"
+            'backdrop_path': '/iHZgOAXu9vRkagvmbtc1jTDUpqs.jpg',
+            'adult': false,
+            'overview': 'Two fraternity pledges go to a sleazy bar looking for strippers to entertain their college friends.',
+            'release_date': '1986-07-18'
           }
-        ]
-
+        ];
       });
 
       it('should dispatch RECEIVE_MOVIE when fetching is done', () => {
@@ -73,8 +72,8 @@ describe('actions', () => {
           .reply(200, {results});
 
         const expectedActions = [
-          {type: 'REQUEST_MOVIE', isFetching: true},
-          {type: 'RECEIVE_MOVIE', movies: results, isFetching: false}
+          {type: 'REQUEST_MOVIES', isFetching: true},
+          {type: 'RECEIVE_MOVIES', movies: results, isFetching: false}
         ];
 
         return store.dispatch(moviesActions.fetchMovies(query)).then(() => {
@@ -85,7 +84,7 @@ describe('actions', () => {
       it('should dispatch RECEIVE_FAILED when fetching is failed', () => {
         const query = 'vamp';
         const expectedActions = [
-          {type: 'REQUEST_MOVIE', isFetching: true},
+          {type: 'REQUEST_MOVIES', isFetching: true},
           {type: 'RECEIVE_FAILED', movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
         ];
 
@@ -97,7 +96,7 @@ describe('actions', () => {
 
           expect(store.getActions()).to.eql(expectedActions);
         });
-      })
+      });
     });
   });
 
@@ -110,7 +109,7 @@ describe('actions', () => {
         movies: [],
         error: 'error',
         isFetching: false
-      })
+      });
     });
-  })
+  });
 });
