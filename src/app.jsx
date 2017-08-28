@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { moviesActions } from './actions';
 
+import Movies from './Components/Movies';
+import SearchBar from './Components/SearchBar';
+
 function mapStateToProps(state) {
   return {
-    state
+    movies: state.movies.movies
   };
 }
 
@@ -18,13 +21,11 @@ function mapDispatchToProps(dispatch) {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
-  componentDidMount() {
-    this.props.getMovies('movie');
-  }
   render() {
     return (
       <div>
-        hi
+        <SearchBar onSearch={this.props.getMovies} />
+        <Movies movies={this.props.movies} />
       </div>
     );
   }
