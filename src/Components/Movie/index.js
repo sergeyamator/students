@@ -1,7 +1,8 @@
 import React from 'react';
 import config from '../../config';
+import './styles.css';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default ({movie}) => {
   const data = mapDataForView(movie);

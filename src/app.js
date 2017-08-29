@@ -6,6 +6,8 @@ import Movies from './Components/Movies';
 import SearchBar from './Components/SearchBar';
 import Filters from './Components/Filters';
 
+import './styles.css';
+
 function mapStateToProps(state) {
   return {
     movies: state.movies.movies,
@@ -30,7 +32,7 @@ function mapDispatchToProps(dispatch) {
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <SearchBar onSearch={this.props.getMovies} />
         <Filters setFilter={this.props.setVisibleFilter} />
         <Movies movies={this.props.movies} visibleFilter={this.props.filter} />

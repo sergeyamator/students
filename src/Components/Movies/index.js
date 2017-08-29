@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from '../Movie';
 import filter from '../Filters/filters';
+import './styles.css';
 
 function filterData(movies, filterType) {
   if (filterType === 'ASCENDING_POPULARITY') {
@@ -26,7 +27,7 @@ export default ({movies, visibleFilter}) => {
   const showedData = filterData(movies, visibleFilter);
 
   return (
-    <section>
+    <section className='movies'>
       {
         showedData.map(movie => (
           <Movie movie={movie} key={movie.id} />

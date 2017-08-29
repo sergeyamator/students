@@ -9,7 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 import {Route} from 'react-router';
 import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 
-import App from './app.jsx';
+import App from './app.js';
 import Movie from './Components/MovieCard';
 
 const history = createHistory();

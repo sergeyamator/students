@@ -1,5 +1,6 @@
 import React from 'react';
 import filtersAction from '../../actions/filters';
+import './styles.css';
 
 export default ({setFilter}) => {
   function setVisibleFilter(filter) {
@@ -7,7 +8,7 @@ export default ({setFilter}) => {
   }
 
   return (
-    <div>
+    <div className="filters">
       <a onClick={() => setVisibleFilter('ascPopularity')}>Sort by &uarr; popularity</a>
       <a onClick={() => setVisibleFilter('descPopularity')}>Sort by &darr; popularity</a>
       <a onClick={() => setVisibleFilter('ascDate')}>Sort by &uarr; date</a>
