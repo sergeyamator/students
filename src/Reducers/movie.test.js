@@ -17,12 +17,12 @@ describe('Movie reducer', () => {
   it('should save movie to the state', () => {
     const action = {
       type: 'RECEIVE_MOVIE',
-      movie: 'any'
+      currentMovie: 'any'
     };
 
     expect(movieReducer(state, action)).to.eql({
       isFetching: false,
-      movie: 'any'
+      currentMovie: 'any'
     });
   });
 

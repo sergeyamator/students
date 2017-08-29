@@ -11,7 +11,7 @@ const receiveMovies = movies => {
 
 const receiveFailed = error => {
   return {
-    type: 'RECEIVE_FAILED',
+    type: 'RECEIVE_MOVIES_FAILED',
     movies: [],
     error: error.message,
     isFetching: false

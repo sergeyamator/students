@@ -5,8 +5,8 @@ export default ({movies}) => (
   <section>
     {
       movies.map(movie => (
-        <Movie movie={movie} key={movie.id} isSingleMovie={false} />
+        <Movie movie={movie} key={movie.id} />
       ))
     }
   </section>
-)
+);

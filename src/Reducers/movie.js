@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     return {
       ...state,
       isFetching: false,
-      movie: action.movie
+      currentMovie: action.currentMovie
     };
   }
 

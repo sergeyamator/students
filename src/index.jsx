@@ -1,18 +1,16 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
+import {render} from 'react-dom';
+
+import {createStore, applyMiddleware, compose} from 'redux';
+import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-
 import createHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router';
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import {Route} from 'react-router';
+import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 
 import App from './app.jsx';
-
+import Movie from './Components/MovieCard';
 
 const history = createHistory();
 const initialState = {};
@@ -36,17 +34,13 @@ const store = createStore(
   composedEnhancers
 );
 
-const Home = () => (
-  <h1>hi</h1>
-)
-
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-        <div>
-          <Route exact path='/' component={App} />
-          <Route exact path='/hi' component={Home} />
-        </div>
+      <div>
+        <Route exact path='/' component={App} />
+        <Route exact path='/movie/:id' component={Movie} />
+      </div>
     </ConnectedRouter>
   </Provider>,
   document.querySelector('#app')

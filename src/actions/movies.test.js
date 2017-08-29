@@ -85,7 +85,7 @@ describe('actions', () => {
         const query = 'vamp';
         const expectedActions = [
           {type: 'REQUEST_MOVIES', isFetching: true},
-          {type: 'RECEIVE_FAILED', movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
+          {type: 'RECEIVE_MOVIES_FAILED', movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
         ];
 
         nock(config.baseMovieUrl)
@@ -105,7 +105,7 @@ describe('actions', () => {
       const error = {message: 'error'};
 
       expect(moviesActions.receiveFailed(error)).to.eql({
-        type: 'RECEIVE_FAILED',
+        type: 'RECEIVE_MOVIES_FAILED',
         movies: [],
         error: 'error',
         isFetching: false

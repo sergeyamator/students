@@ -4,15 +4,15 @@ import fetch from 'isomorphic-fetch';
 const receiveMovie = movie => {
   return {
     type: 'RECEIVE_MOVIE',
-    movie: movie.result,
+    currentMovie: movie,
     isFetching: false
   };
 };
 
 const receiveFailed = error => {
   return {
-    type: 'RECEIVE_FAILED',
-    movie: null,
+    type: 'RECEIVE_MOVIE_FAILED',
+    currentMovie: null,
     error: error.message,
     isFetching: false
   };
@@ -24,7 +24,7 @@ const fetchMovie = id => dispatch => {
     isFetching: true
   });
 
-  const getVideoById = `${config.baseMovieUrl}${config.queryMovieById}${id}${config.apiKey}`;
+  const getVideoById = `${config.baseMovieUrl}/${config.queryMovieById}${id}${config.apiKey}`;
 
   return fetch(getVideoById)
     .then(response => response.json())

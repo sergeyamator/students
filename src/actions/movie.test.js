@@ -12,7 +12,7 @@ const mockStore = configureMockStore(middlewares);
 describe('actions', () => {
   describe('async actions', () => {
     let store;
-    let result;
+    let currentMovie;
     let id;
 
     describe('fetch movies by id', () => {
@@ -23,7 +23,7 @@ describe('actions', () => {
       beforeEach(() => {
         store = mockStore({isFetching: false, movie: null});
         id = 2525;
-        result = {
+        currentMovie = {
           'backdrop_path': '/pp0x3oViWtjmb5zcKg1NaMojJQP.jpg',
           'created_by': [
             {
@@ -101,12 +101,12 @@ describe('actions', () => {
 
       it('should dispatch RECEIVE_MOVIE when fetching is done', () => {
         nock(config.baseMovieUrl)
-          .get(`${config.queryMovieById}${id}${config.apiKey}`)
-          .reply(200, {result});
+          .get(`/${config.queryMovieById}${id}${config.apiKey}`)
+          .reply(200, currentMovie);
 
         const expectedActions = [
           {type: 'REQUEST_MOVIE', isFetching: true},
-          {type: 'RECEIVE_MOVIE', movie: result, isFetching: false}
+          {type: 'RECEIVE_MOVIE', currentMovie, isFetching: false}
         ];
 
         return store.dispatch(movieActions.fetchMovie(id)).then(() => {
@@ -118,15 +118,15 @@ describe('actions', () => {
         const expectedActions = [
           {type: 'REQUEST_MOVIE', isFetching: true},
           {
-            type: 'RECEIVE_FAILED',
-            movie: null,
+            type: 'RECEIVE_MOVIE_FAILED',
+            currentMovie: null,
             isFetching: false,
-            error: `request to ${config.baseMovieUrl}${config.queryMovieById}${id}${config.apiKey} failed, reason: something awful happened`
+            error: `request to ${config.baseMovieUrl}/${config.queryMovieById}${id}${config.apiKey} failed, reason: something awful happened`
           }
         ];
 
         nock(config.baseMovieUrl)
-          .get(`${config.queryMovieById}${id}${config.apiKey}`)
+          .get(`/${config.queryMovieById}${id}${config.apiKey}`)
           .replyWithError({'message': 'something awful happened', 'code': 'AWFUL_ERROR'});
 
         return store.dispatch(movieActions.fetchMovie(id)).then(() => {
