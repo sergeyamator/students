@@ -1,6 +1,6 @@
 import React from 'react';
 import Movie from '../Movie';
-import filter from '../Filters/filters';
+import filter from '../Filters/filters.component';
 import './styles.css';
 
 function filterData(movies, filterType) {
@@ -8,11 +8,11 @@ function filterData(movies, filterType) {
     return filter.byAscPopularity(movies);
   }
 
-  if (filterType === 'ASCENDING_DATE') {
+  if (filterType === 'DESCENDINGLY_POPULARITY') {
     return filter.byDescPopularity(movies);
   }
 
-  if (filterType === 'DESCENDINGLY_DATE') {
+  if (filterType === 'ASCENDING_DATE') {
     return filter.byAscDate(movies);
   }
 
@@ -25,7 +25,6 @@ function filterData(movies, filterType) {
 
 export default ({movies, visibleFilter}) => {
   const showedData = filterData(movies, visibleFilter);
-
   return (
     <section className='movies'>
       {

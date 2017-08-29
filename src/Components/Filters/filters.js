@@ -13,13 +13,19 @@ export default {
 
   byAscDate(data) {
     return data.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
+      const firstDate = a.release_date || a.last_air_date || a.first_air_date || 0;
+      const secondDate = b.release_date || b.last_air_date || b.first_air_date || 0;
+
+      return new Date(firstDate) - new Date(secondDate);
     });
   },
 
   byDescDate(data) {
     return data.sort((a, b) => {
-      return new Date(b.date) -new Date(a.date);
+      const firstDate = a.release_date || a.last_air_date || a.first_air_date || 0;
+      const secondDate = b.release_date || b.last_air_date || b.first_air_date || 0;
+
+      return new Date(secondDate) - new Date(firstDate);
     });
   }
 };
