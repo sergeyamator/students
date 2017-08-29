@@ -15,7 +15,7 @@ const receiveFailed = error => {
     movies: [],
     error: error.message,
     isFetching: false
-  }
+  };
 };
 
 const fetchMovies = movie => dispatch => {

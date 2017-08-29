@@ -14,5 +14,5 @@ export default ({onSearch}) => {
         onInput={search}
       />
     </form>
-  )
-}
+  );
+};

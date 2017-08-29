@@ -2,25 +2,14 @@ import React from 'react';
 import config from '../../config';
 
 export default ({movie, isSingleMovie}) => {
-  const data = isSingleMovie ? mapDataForSingleView : mapDataForListView(movie);
-  const listView = (
-    <article className='movie'>
-      <h2 className='movie__title'>{data.title}</h2>
-      <div className='movie__picture'><img src={data.imgSrc} alt={data.title} /></div>
-      <div className='movie__date'>{data.date}</div>
-      <div className='movie__overview'>{data.overview}</div>
-      <div className='movie__raiting'>
-        <div className='movie__popularity'>{data.popularity}</div>
-        <div className='movie__vote-count'>{data.voteCount}</div>
-      </div>
-    </article>
-  );
 
-  const singleMode = (
-    <article className='movie'>
+  const data = isSingleMovie ? mapDataForSingleView(movie) : mapDataForListView(movie);
+
+  const view = isSingleMovie
+    ? <article className='movie'>
       <a className='movie__link' href={data.homeUrl}>
         <h2 className='movie__title'>{data.title}</h2>
-        <div className='movie__picture'><img src={data.imgSrc} alt={data.title} /></div>
+        <div className='movie__picture'><img src={data.imgSrc} alt={data.title}/></div>
         <div className='movie__date'>{data.date}</div>
         <div className='movie__overview'>{data.overview}</div>
         <div className='movie__episode-count'>{data.episodeCount}</div>
@@ -35,9 +24,18 @@ export default ({movie, isSingleMovie}) => {
         </ul>
       </a>
     </article>
-  );
+    : <article className='movie'>
+      <h2 className='movie__title'>{data.title}</h2>
+      <div className='movie__picture'><img src={data.imgSrc} alt={data.title}/></div>
+      <div className='movie__date'>{data.date}</div>
+      <div className='movie__overview'>{data.overview}</div>
+      <div className='movie__raiting'>
+        <div className='movie__popularity'>{data.popularity}</div>
+        <div className='movie__vote-count'>{data.voteCount}</div>
+      </div>
+    </article>
 
-  return isSingleMovie ? singleMode : listView;
+  return view;
 };
 
 function mapDataForListView(data) {
