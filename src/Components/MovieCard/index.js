@@ -49,7 +49,6 @@ export default class MovieCard extends Component {
 };
 
 function mapDataForView(data) {
-  debugger
   return {
     title: data.title || data.original_title || data.name || data.original_name || 'unknown',
     episodeCount: data.episode_count,

@@ -135,17 +135,4 @@ describe('actions', () => {
       });
     });
   });
-
-  /*describe('sync actions', () => {
-    it('should return receive error action', () => {
-      const error = {message: 'error'};
-
-      expect(movieActions.receiveFailed(error)).to.eql({
-        type: 'RECEIVE_FAILED',
-        movies: [],
-        error: 'error',
-        isFetching: false
-      });
-    });
-  });*/
 });
