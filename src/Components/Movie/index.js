@@ -1,10 +1,11 @@
 import React from 'react';
 import config from '../../config';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 import { Link } from 'react-router-dom';
 
-export default ({movie}) => {
+const Movie = ({movie}) => {
   const data = mapDataForView(movie);
 
   return (
@@ -26,7 +27,7 @@ export default ({movie}) => {
 function mapDataForView(data) {
   return {
     title: data.title || data.original_title || data.original_name || 'unknown',
-    imgSrc: data.poster_path ? `${config.imageSrc}${data.poster_path}` : `${config.imageSrc}${data.backdrop_path}`,
+    imgSrc: getImgUrl(data),
     popularity: data.popularity,
     date: data.release_date || data.last_air_date || data.first_air_date || 0,
     overview: data.overview,
@@ -34,3 +35,21 @@ function mapDataForView(data) {
     id: data.id
   };
 }
+
+function isImgSrcExist(data) {
+  return data.poster_path || data.backdrop_path;
+}
+
+function getImgUrl(data) {
+  if (isImgSrcExist(data)) {
+    return `${config.imageSrc}${data.poster_path}` || `${config.imageSrc}${data.backdrop_path}`;
+  }
+
+  return `${config.noImageSrc}`;
+}
+
+Movie.propTypes = {
+  movie: PropTypes.object
+};
+
+export default Movie;

@@ -1,5 +1,11 @@
 .movie {
   width: 30%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.movie:hover {
+  box-shadow: 0 0 35px 16px rgba(0,0,0,0.2);
 }
 
 .movie__date {
@@ -14,4 +20,12 @@
 
 .movie__label {
   color: #a04d83;
+}
+
+.movie__picture {
+  max-width: 360px;
+}
+
+.movie__picture img {
+  max-width: 100%;
 }

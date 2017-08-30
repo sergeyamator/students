@@ -2,6 +2,8 @@
 logs
 *.log
 .idea
+coverage
+.nyc_output
 
 # Runtime data
 pids

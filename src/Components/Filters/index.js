@@ -1,8 +1,9 @@
 import React from 'react';
 import filtersAction from '../../actions/filters';
+import PropTypes from 'prop-types';
 import './styles.css';
 
-export default ({setFilter}) => {
+const Filter = ({setFilter}) => {
   function setVisibleFilter(filter) {
     setFilter(filtersAction(filter));
   }
@@ -16,3 +17,9 @@ export default ({setFilter}) => {
     </div>
   );
 };
+
+Filter.propTypes = {
+  setFilter: PropTypes.func
+};
+
+export default Filter;

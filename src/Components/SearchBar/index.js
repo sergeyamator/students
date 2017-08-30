@@ -1,14 +1,16 @@
 import React from 'react';
-//import './styles.css';
+import PropTypes from 'prop-types';
 
-export default ({onSearch}) => {
+import './styles.css';
+
+const SearchBar = ({onSearch}) => {
   let textInput;
   function search() {
     onSearch(textInput.value);
   }
 
   return (
-    <form className="search-form">
+    <form className='search-form'>
       <input
         className='search-input'
         ref={input => textInput = input}
@@ -18,3 +20,9 @@ export default ({onSearch}) => {
     </form>
   );
 };
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func
+};
+
+export default SearchBar;

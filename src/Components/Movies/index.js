@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from '../Movie';
-import filter from '../Filters/filters.component';
+import filter from '../Filters/filters';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 function filterData(movies, filterType) {
@@ -23,7 +24,7 @@ function filterData(movies, filterType) {
   return movies;
 }
 
-export default ({movies, visibleFilter}) => {
+const Movies = ({movies, visibleFilter}) => {
   const showedData = filterData(movies, visibleFilter);
   return (
     <section className='movies'>
@@ -35,3 +36,10 @@ export default ({movies, visibleFilter}) => {
     </section>
   );
 };
+
+Movies.propTypes = {
+  movies: PropTypes.array,
+  visibleFilter: PropTypes.string
+};
+
+export default Movies;

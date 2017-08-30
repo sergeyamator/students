@@ -24,6 +24,11 @@ const fetchMovies = movie => dispatch => {
     isFetching: true
   });
 
+  if (!movie) {
+    dispatch(receiveMovies({results: []}));
+    return;
+  }
+
   return fetch(config.searchMovieUrl + movie)
     .then(response => response.json())
     .then(res => dispatch(receiveMovies(res)))

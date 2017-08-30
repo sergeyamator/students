@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import filter from './filters';
 
-describe.only('filters', () => {
+describe ('filters', () => {
   let data;
 
   beforeEach(() => {
