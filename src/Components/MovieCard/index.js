@@ -52,6 +52,11 @@ export default class MovieCard extends Component {
               <div className='movie__popularity'>{data.popularity}</div>
               <div className='movie__vote-count'>{data.voteCount}</div>
             </div>
+            <ul>
+              {
+                data.genres.map(item => <li key={item.id}>{item.name}</li>)
+              }
+            </ul>
           </a>
         </article>
       </section>
@@ -63,7 +68,7 @@ function mapDataForView(data) {
   return {
     title: data.title || data.original_title || data.name || data.original_name || 'unknown',
     episodeCount: data.episode_count,
-    genres: data.genres,
+    genres: data.genres || [],
     homeUrl: data.homepage,
     imgSrc: getImgUrl(data),
     popularity: data.popularity,

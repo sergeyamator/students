@@ -21,7 +21,10 @@ const middleware = [
 ];
 
 const devToolsExtension = window.devToolsExtension;
-enhancers.push(devToolsExtension());
+
+if (devToolsExtension) {
+  enhancers.push(devToolsExtension());
+}
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
