@@ -6,6 +6,12 @@ import nock from 'nock';
 import {moviesActions} from '../actions';
 import config from '../config';
 
+import {
+  RECEIVE_MOVIES,
+  RECEIVE_MOVIES_FAILED,
+  REQUEST_MOVIES
+} from '../actions/actions';
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -72,8 +78,8 @@ describe('actions', () => {
           .reply(200, {results});
 
         const expectedActions = [
-          {type: 'REQUEST_MOVIES', isFetching: true},
-          {type: 'RECEIVE_MOVIES', movies: results, isFetching: false}
+          {type: REQUEST_MOVIES, isFetching: true},
+          {type: RECEIVE_MOVIES, movies: results, isFetching: false}
         ];
 
         return store.dispatch(moviesActions.fetchMovies(query)).then(() => {
@@ -84,8 +90,8 @@ describe('actions', () => {
       it('should dispatch RECEIVE_FAILED when fetching is failed', () => {
         const query = 'vamp';
         const expectedActions = [
-          {type: 'REQUEST_MOVIES', isFetching: true},
-          {type: 'RECEIVE_MOVIES_FAILED', movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
+          {type: REQUEST_MOVIES, isFetching: true},
+          {type: RECEIVE_MOVIES_FAILED, movies: [], isFetching: false, error: `request to ${config.baseMovieUrl}${config.multiSearchUrl}${query} failed, reason: something awful happened`}
         ];
 
         nock(config.baseMovieUrl)
@@ -93,7 +99,6 @@ describe('actions', () => {
           .replyWithError({'message': 'something awful happened', 'code': 'AWFUL_ERROR'});
 
         return store.dispatch(moviesActions.fetchMovies(query)).then(() => {
-
           expect(store.getActions()).to.eql(expectedActions);
         });
       });
@@ -105,7 +110,7 @@ describe('actions', () => {
       const error = {message: 'error'};
 
       expect(moviesActions.receiveFailed(error)).to.eql({
-        type: 'RECEIVE_MOVIES_FAILED',
+        type: RECEIVE_MOVIES_FAILED,
         movies: [],
         error: 'error',
         isFetching: false

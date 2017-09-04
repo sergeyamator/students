@@ -2,6 +2,12 @@ import {expect} from 'chai';
 
 import movieReducer from './movie';
 
+import {
+  REQUEST_MOVIE,
+  RECEIVE_MOVIE
+} from '../actions/actions';
+
+
 describe('Movie reducer', () => {
   let state;
 
@@ -16,7 +22,7 @@ describe('Movie reducer', () => {
 
   it('should save movie to the state', () => {
     const action = {
-      type: 'RECEIVE_MOVIE',
+      type: RECEIVE_MOVIE,
       currentMovie: 'any'
     };
 
@@ -28,7 +34,7 @@ describe('Movie reducer', () => {
 
   it('should fetch movie', () => {
     const action = {
-      type: 'REQUEST_MOVIE'
+      type: REQUEST_MOVIE
     };
 
     expect(movieReducer(state, action)).to.eql({

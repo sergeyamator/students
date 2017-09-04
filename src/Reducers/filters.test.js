@@ -1,6 +1,13 @@
 import {expect} from 'chai';
 import filtersAction from './filters';
 
+import {
+  ASCENDING_POPULARITY,
+  DESCENDINGLY_POPULARITY,
+  ASCENDING_DATE,
+  DESCENDINGLY_DATE
+} from '../actions/actions';
+
 describe('filters', () => {
   let initState;
 
@@ -13,26 +20,26 @@ describe('filters', () => {
   });
 
   it('should return ascending popularity filter', () => {
-    const filter = 'ASCENDING_POPULARITY';
+    const filter = ASCENDING_POPULARITY;
 
-    expect(filtersAction(initState, {type: 'ASCENDING_POPULARITY'})).to.eql(filter);
+    expect(filtersAction(initState, {type: ASCENDING_POPULARITY})).to.eql(filter);
   });
 
   it('should return descendingly popularity filter', () => {
-    const filter = 'DESCENDINGLY_POPULARITY';
+    const filter = DESCENDINGLY_POPULARITY;
 
-    expect(filtersAction(initState, {type: 'DESCENDINGLY_POPULARITY'})).to.eql(filter);
+    expect(filtersAction(initState, {type: DESCENDINGLY_POPULARITY})).to.eql(filter);
   });
 
   it('should return ascending date filter', () => {
-    const filter = 'ASCENDING_DATE';
+    const filter = ASCENDING_DATE;
 
-    expect(filtersAction(initState, {type: 'ASCENDING_DATE'})).to.eql(filter);
+    expect(filtersAction(initState, {type: ASCENDING_DATE})).to.eql(filter);
   });
 
   it('should return descendingly date filter', () => {
-    const filter = 'DESCENDINGLY_DATE';
+    const filter = DESCENDINGLY_DATE;
 
-    expect(filtersAction(initState, {type: 'DESCENDINGLY_DATE'})).to.eql(filter);
+    expect(filtersAction(initState, {type: DESCENDINGLY_DATE})).to.eql(filter);
   });
-})
+});

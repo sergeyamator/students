@@ -4,20 +4,25 @@ import filter from '../Filters/filters';
 import PropTypes from 'prop-types';
 import './styles.css';
 
+import  {ASCENDING_POPULARITY} from '../../actions/actions';
+import  {DESCENDINGLY_POPULARITY} from  '../../actions/actions';
+import  {ASCENDING_DATE} from  '../../actions/actions';
+import  {DESCENDINGLY_DATE} from  '../../actions/actions';
+
 function filterData(movies, filterType) {
-  if (filterType === 'ASCENDING_POPULARITY') {
+  if (filterType === ASCENDING_POPULARITY) {
     return filter.byAscPopularity(movies);
   }
 
-  if (filterType === 'DESCENDINGLY_POPULARITY') {
+  if (filterType === DESCENDINGLY_POPULARITY) {
     return filter.byDescPopularity(movies);
   }
 
-  if (filterType === 'ASCENDING_DATE') {
+  if (filterType === ASCENDING_DATE) {
     return filter.byAscDate(movies);
   }
 
-  if (filterType === 'DESCENDINGLY_DATE') {
+  if (filterType === DESCENDINGLY_DATE) {
     return filter.byDescDate(movies);
   }
 

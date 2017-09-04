@@ -1,9 +1,15 @@
 import config from '../config';
 import fetch from 'isomorphic-fetch';
 
+import {
+  RECEIVE_MOVIES,
+  RECEIVE_MOVIES_FAILED,
+  REQUEST_MOVIES
+} from '../actions/actions';
+
 const receiveMovies = movies => {
   return {
-    type: 'RECEIVE_MOVIES',
+    type: RECEIVE_MOVIES,
     movies: movies.results,
     isFetching: false
   };
@@ -11,7 +17,7 @@ const receiveMovies = movies => {
 
 const receiveFailed = error => {
   return {
-    type: 'RECEIVE_MOVIES_FAILED',
+    type: RECEIVE_MOVIES_FAILED,
     movies: [],
     error: error.message,
     isFetching: false
@@ -20,7 +26,7 @@ const receiveFailed = error => {
 
 const fetchMovies = movie => dispatch => {
   dispatch({
-    type: 'REQUEST_MOVIES',
+    type: REQUEST_MOVIES,
     isFetching: true
   });
 

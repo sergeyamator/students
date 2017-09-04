@@ -6,6 +6,12 @@ import nock from 'nock';
 import {movieActions} from '../actions';
 import config from '../config';
 
+import {
+  RECEIVE_MOVIE,
+  RECEIVE_MOVIE_FAILED,
+  REQUEST_MOVIE
+} from './actions';
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -105,8 +111,8 @@ describe('actions', () => {
           .reply(200, currentMovie);
 
         const expectedActions = [
-          {type: 'REQUEST_MOVIE', isFetching: true},
-          {type: 'RECEIVE_MOVIE', currentMovie, isFetching: false}
+          {type: REQUEST_MOVIE, isFetching: true},
+          {type: RECEIVE_MOVIE, currentMovie, isFetching: false}
         ];
 
         return store.dispatch(movieActions.fetchMovie(id)).then(() => {
@@ -116,9 +122,9 @@ describe('actions', () => {
 
       it('should dispatch RECEIVE_FAILED when fetching is failed', () => {
         const expectedActions = [
-          {type: 'REQUEST_MOVIE', isFetching: true},
+          {type: REQUEST_MOVIE, isFetching: true},
           {
-            type: 'RECEIVE_MOVIE_FAILED',
+            type: RECEIVE_MOVIE_FAILED,
             currentMovie: null,
             isFetching: false,
             error: `request to ${config.baseMovieUrl}/${config.queryMovieById}${id}${config.apiKey} failed, reason: something awful happened`
