@@ -1,10 +1,6 @@
-import {combineReducers} from 'redux';
-import movies from './movies';
-import movie from './movie';
-import filter from './filters';
+import { combineReducers } from 'redux';
+import students from './students';
 
 export default combineReducers({
-  movies,
-  movie,
-  filter
+  students,
 });

@@ -1,6 +1,17 @@
 {
-  "extends": ["standard", "standard-react"],
+  "extends": "airbnb",
   "rules": {
-    "semi": [2, "always"]
-  }
+    "class-methods-use-this": 0,
+    "no-useless-constructor": 0,
+    "no-underscore-dangle": 0,
+    "no-mixed-operators": 0,
+    "prefer-destructuring": 0,
+    "react/jsx-filename-extension": 0
+  },
+  "env": {
+    "mocha": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint"
 }

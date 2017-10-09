@@ -1,23 +1,23 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 
-import {createStore, applyMiddleware, compose} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
 import createHistory from 'history/createBrowserHistory';
-import {Route} from 'react-router';
-import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
+import { Route } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import rootReducer from './Reducers';
 
-import App from './app.js';
-import Movie from './Components/MovieCard';
+import App from './app';
 
 const history = createHistory();
 const initialState = {};
 const enhancers = [];
 const middleware = [
   thunk,
-  routerMiddleware(history)
+  routerMiddleware(history),
 ];
 
 const devToolsExtension = window.devToolsExtension;
@@ -28,23 +28,22 @@ if (devToolsExtension) {
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
-  ...enhancers
+  ...enhancers,
 );
 
 const store = createStore(
   rootReducer,
   initialState,
-  composedEnhancers
+  composedEnhancers,
 );
 
 render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <Route exact path='/' component={App} />
-        <Route exact path='/movie/:id' component={Movie} />
-      </div>
-    </ConnectedRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
-  document.querySelector('#app')
+  document.querySelector('#app'),
 );

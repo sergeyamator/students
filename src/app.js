@@ -1,41 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { moviesActions } from './actions';
+import './styles.scss';
 
-import Movies from './Components/Movies';
-import SearchBar from './Components/SearchBar';
-import Filters from './Components/Filters';
-
-import './styles.css';
-
-function mapStateToProps(state) {
-  return {
-    movies: state.movies.movies,
-    filter: state.filter
-  };
+function mapStateToProps() {
+  return {};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getMovies: searchText => {
-      dispatch(moviesActions.fetchMovies(searchText));
-    },
-    setVisibleFilter: filter => {
-      dispatch({
-        type: filter
-      })
-    }
-  };
+function mapDispatchToProps() {
+  return {};
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps())
 export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <SearchBar onSearch={this.props.getMovies} />
-        <Filters setFilter={this.props.setVisibleFilter} />
-        <Movies movies={this.props.movies} visibleFilter={this.props.filter} />
+        Starting App
       </div>
     );
   }
