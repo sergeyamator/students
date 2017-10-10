@@ -4,7 +4,7 @@ import './style.scss';
 
 const Button = props => (
   <button
-    className="log-in-button"
+    className="button"
     type={props.type}
   >
     {props.children}
