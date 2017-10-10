@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Checkbox = props => (
-  <label htmlFor="user" className="new-user">
+  <label htmlFor="user" className="checkbox">
     {props.label}
     <input
       id="user"
