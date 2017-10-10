@@ -68,7 +68,6 @@
     "loglevel": "^1.4.1",
     "nock": "^9.0.14",
     "nyc": "^11.1.0",
-    "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.6.0",
     "react-hot-loader": "^3.0.0",
     "react-test-renderer": "^16.0.0",
@@ -98,8 +97,5 @@
     "moduleDirectories": [
       "node_modules"
     ]
-  },
-  "pre-commit": [
-    "test"
-  ]
+  }
 }
