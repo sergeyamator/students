@@ -1,0 +1,60 @@
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+.log-in {
+    width: 30%;
+    margin: auto;
+    padding: 2em 2em;
+    text-align: center;
+    background: url("images/form-bg.jpg") no-repeat 0 0;
+    font-family: "Open Sans", sans-serif;
+    background-size: cover;
+}
+
+.description {
+    font-size: 2em;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 1.5em;
+}
+
+.log-in-input {
+    width: 92%;
+    padding: 1em 1em 1em 1em;
+    font-size: 0.8em;
+    margin: 1em 0;
+    outline: none;
+    color: #FFF;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid #fff;
+    letter-spacing: 1px;
+    text-align: center;
+
+    @include placeholder {
+        color: #ffffff;
+        font-size: 14px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.log-in__button {
+    margin: 3.7em 0;
+    display: flex;
+    justify-content: space-between;
+}
