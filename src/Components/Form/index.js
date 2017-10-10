@@ -8,8 +8,26 @@ const Form = () => (
     method="post"
     action="#"
   >
-    <ButtonSubmit />
-    <ButtonClear />
+    <input
+      type="email"
+      className="email"
+      placeholder="Введите свой email"
+    />
+    <input
+      type="password"
+      name="password"
+      className="password"
+    />
+    <label htmlFor="user" className="new-user">
+      Я новый пользователь
+      <input
+        id="user"
+        type="checkbox"
+        name="checkbox"
+      />
+    </label>
+    <ButtonSubmit>Отправить</ButtonSubmit>
+    <ButtonClear>Очистить форму</ButtonClear>
   </form>
 );
 
