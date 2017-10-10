@@ -1,7 +1,6 @@
 import React from 'react';
-import ButtonClear from '../ButtonClear/index';
-import ButtonSubmit from '../ButtonSubmit/index';
 import Checkbox from '../Checkbox/index';
+import Button from '../Button/index';
 import './style.scss';
 
 const Form = () => (
@@ -30,8 +29,8 @@ const Form = () => (
       />
     </div>
     <div className="log-in__button">
-      <ButtonSubmit>Войти</ButtonSubmit>
-      <ButtonClear>Очистить</ButtonClear>
+      <Button type="submit">Войти</Button>
+      <Button type="reset">Очистить</Button>
     </div>
     <Checkbox label="Я новый пользователь" />
   </form>
