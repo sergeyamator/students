@@ -1,19 +1,20 @@
 import React from 'react';
 import Checkbox from '../Checkbox/index';
 import Button from '../Button/index';
+import Title from '../Title/index';
 import './style.scss';
 
 const Form = () => (
   <form
     method="post"
     action="#"
-    className="log-in"
+    className="form"
   >
-    <h1 className="description">Войти в личный кабинет</h1>
+    <Title>Войти в личный кабинет</Title>
     <div className="log-in__field">
       <input
         type="email"
-        className="log-in-input email"
+        className="input"
         name="email"
         placeholder="Введите свой email"
         required
@@ -23,12 +24,12 @@ const Form = () => (
       <input
         type="password"
         name="password"
-        className="log-in-input password"
+        className="input"
         required
         placeholder="Введите свой пароль"
       />
     </div>
-    <div className="log-in__button">
+    <div className="form-button">
       <Button type="submit">Войти</Button>
       <Button type="reset">Очистить</Button>
     </div>
