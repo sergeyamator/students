@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonClear from '../ButtonClear/index';
 import ButtonSubmit from '../ButtonSubmit/index';
+import Checkbox from '../Checkbox/index';
 import '../../styles.scss';
 
 const Form = () => (
@@ -11,6 +12,7 @@ const Form = () => (
     <input
       type="email"
       className="email"
+      name="email"
       placeholder="Введите свой email"
     />
     <input
@@ -18,14 +20,7 @@ const Form = () => (
       name="password"
       className="password"
     />
-    <label htmlFor="user" className="new-user">
-      Я новый пользователь
-      <input
-        id="user"
-        type="checkbox"
-        name="checkbox"
-      />
-    </label>
+    <Checkbox>Я новый пользователь</Checkbox>
     <ButtonSubmit>Отправить</ButtonSubmit>
     <ButtonClear>Очистить форму</ButtonClear>
   </form>
