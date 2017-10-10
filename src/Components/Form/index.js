@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from '../Checkbox/index';
 import Button from '../Button/index';
 import Title from '../Title/index';
+import Field from '../Field/index';
 import './style.scss';
 
 const Form = () => (
@@ -11,24 +12,8 @@ const Form = () => (
     className="form"
   >
     <Title>Войти в личный кабинет</Title>
-    <div className="log-in__field">
-      <input
-        type="email"
-        className="input"
-        name="email"
-        placeholder="Введите свой email"
-        required
-      />
-    </div>
-    <div className="log-in__field">
-      <input
-        type="password"
-        name="password"
-        className="input"
-        required
-        placeholder="Введите свой пароль"
-      />
-    </div>
+    <Field name="email" type="email" placeholder="Введите свой email" className="input" />
+    <Field name="password" type="password" placeholder="Введите свой пароль" className="input" />
     <div className="form-button">
       <Button type="submit">Войти</Button>
       <Button type="reset">Очистить</Button>
