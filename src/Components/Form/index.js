@@ -20,7 +20,7 @@ const Form = () => (
       name="password"
       className="password"
     />
-    <Checkbox>Я новый пользователь</Checkbox>
+    <Checkbox label="Я новый пользователь" />
     <ButtonSubmit>Отправить</ButtonSubmit>
     <ButtonClear>Очистить форму</ButtonClear>
   </form>
