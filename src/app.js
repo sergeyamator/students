@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Form from './Components/Form/index';
 import './styles.scss';
 
 function mapStateToProps() {
@@ -15,7 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        Starting App
+        <Form />
       </div>
     );
   }
