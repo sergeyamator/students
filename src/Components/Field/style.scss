@@ -1,0 +1,37 @@
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+input {
+    width: 92%;
+    padding: 1em 1em 1em 1em;
+    font-size: 0.8em;
+    margin: 1em 0;
+    outline: none;
+    color: #FFF;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid #fff;
+    letter-spacing: 1px;
+    text-align: center;
+
+    @include placeholder {
+        color: #ffffff;
+        font-size: 14px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
