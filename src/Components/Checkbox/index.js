@@ -4,7 +4,7 @@ import '../../styles.scss';
 
 const Checkbox = props => (
   <label htmlFor="user" className="new-user">
-    {props.children}
+    {props.label}
     <input
       id="user"
       type="checkbox"
@@ -14,7 +14,7 @@ const Checkbox = props => (
 );
 
 Checkbox.propTypes = {
-  children: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default Checkbox;
