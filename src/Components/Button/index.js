@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const ButtonClear = props => (
+const Button = props => (
   <button
-    className="button-clear"
-    type="reset"
+    className="log-in-button"
+    type={props.type}
   >
     {props.children}
   </button>
 );
 
-ButtonClear.propTypes = {
+Button.propTypes = {
   children: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
-export default ButtonClear;
+export default Button;
