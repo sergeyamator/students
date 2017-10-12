@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/api/register', (req, res) => {
-  const { email, password, passwordConfirm } = req.body;
+  const { name, email, password, passwordConfirm } = req.body;
 
   if (password !== passwordConfirm) {
     res.status(400);
@@ -22,6 +22,7 @@ app.post('/api/register', (req, res) => {
   }
 
   res.send({
+    name,
     email,
   });
 });

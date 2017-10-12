@@ -37,6 +37,14 @@ class Form extends Component {
         <Title>Войти в личный кабинет</Title>
 
         <Field
+          name="name"
+          type="text"
+          placeholder="Введите свое имя"
+          className="input"
+          onChange={this.onInputChange}
+        />
+
+        <Field
           name="email"
           type="email"
           placeholder="Введите свой email"
