@@ -11,15 +11,20 @@ const jsonParser = bodyParser.json();
 const publicPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicPath));
+app.use(bodyParser.urlencoded({extended: true}));
 
-/*app.post('/register', jsonParser, (request, response) => {
-  if (!request.body) {
-    return response.sendStatus(400);
+
+app.post('/register', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const passwordConfirm = req.body.passwordConfirm;
+
+  if (password !== passwordConfirm) {
+    // send error
   }
 
-  console.log(request.body);
-  return response.json(`${request.body.userName} - ${request.body.userAge}`);
-});*/
+  res.redirect(303, '/thank-you');
+});
 
 // начинаем прослушивать подключения на 3000 порту
 app.listen(3000);
