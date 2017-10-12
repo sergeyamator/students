@@ -8,7 +8,7 @@ import './style.scss';
 const Form = () => (
   <form
     method="post"
-    action="#"
+    action="/register"
     className="form"
   >
     <Title>Войти в личный кабинет</Title>

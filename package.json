@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "./node_modules/.bin/eslint ./src",
     "dev": "webpack-dashboard -- webpack-dev-server --progress --profile --colors",
-    "test": "npm run lint && nyc mocha src/**/*.test.js --require ignore-styles  --compilers js:babel-core/register"
+    "test": "jest src/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "chai": "^4.1.1",
     "css-loader": "0.28.7",
     "enzyme": "^3.1.0",
+    "enzyme-adapter-react-15": "^1.0.1",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
