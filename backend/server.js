@@ -15,9 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.post('/register', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const passwordConfirm = req.body.passwordConfirm;
+  const {email, password, passwordConfirm} = req.body;
 
   if (password !== passwordConfirm) {
     // send error
