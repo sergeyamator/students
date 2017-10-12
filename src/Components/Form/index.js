@@ -25,7 +25,12 @@ class Form extends Component {
     this.props.onRegister(this.state);
   };
 
-  isDisabled = () => !(this.state.email && this.state.password && this.state.passwordConfirm);
+  isDisabled = () => !(
+    this.state.email &&
+    this.state.password &&
+    this.state.passwordConfirm &&
+    this.state.name
+  );
 
   render() {
     return (
