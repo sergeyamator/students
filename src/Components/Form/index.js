@@ -14,6 +14,7 @@ const Form = () => (
     <Title>Войти в личный кабинет</Title>
     <Field name="email" type="email" placeholder="Введите свой email" className="input" />
     <Field name="password" type="password" placeholder="Введите свой пароль" className="input" />
+    <Field name="password" type="password" placeholder="Подтвердите пароль" className="input" />
     <div className="form-button">
       <Button type="submit">Войти</Button>
       <Button type="reset">Очистить</Button>
