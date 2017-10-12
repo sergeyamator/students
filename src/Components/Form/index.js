@@ -1,26 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox/index';
 import Button from '../Button/index';
 import Title from '../Title/index';
 import Field from '../Field/index';
 import './style.scss';
 
-const Form = () => (
-  <form
-    method="post"
-    action="/register"
-    className="form"
-  >
-    <Title>Войти в личный кабинет</Title>
-    <Field name="email" type="email" placeholder="Введите свой email" className="input" />
-    <Field name="password" type="password" placeholder="Введите свой пароль" className="input" />
-    <Field name="passwordConfirm" type="password" placeholder="Подтвердите пароль" className="input" />
-    <div className="form-button">
-      <Button type="submit">Войти</Button>
-      <Button type="reset">Очистить</Button>
-    </div>
-    <Checkbox label="Я новый пользователь" />
-  </form>
-);
+class Form extends Component {
+  static propTypes = {
+    onRegister: PropTypes.func.isRequired,
+  };
+
+  state = {};
+
+  onInputChange = (data) => {
+    this.setState({
+      ...this.state,
+      ...data,
+    });
+  };
+
+  onSave = (e) => {
+    e.preventDefault();
+    this.props.onRegister(this.state);
+  };
+
+  render() {
+    return (
+      <form
+        method="post"
+        className="form"
+        onSubmit={this.onSave}
+      >
+        <Title>Войти в личный кабинет</Title>
+
+        <Field
+          name="email"
+          type="email"
+          placeholder="Введите свой email"
+          className="input"
+          onChange={this.onInputChange}
+        />
+
+        <Field
+          name="password"
+          type="password"
+          placeholder="Введите свой пароль"
+          className="input"
+          onChange={this.onInputChange}
+        />
+
+        <Field
+          name="passwordConfirm"
+          type="password"
+          placeholder="Подтвердите пароль"
+          className="input"
+          onChange={this.onInputChange}
+        />
+
+        <div className="form-button">s
+          <Button type="submit">Войти</Button>
+          <Button type="reset">Очистить</Button>
+        </div>
+
+        <Checkbox label="Я новый пользователь" />
+      </form>
+    );
+  }
+}
 
 export default Form;
