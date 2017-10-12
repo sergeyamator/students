@@ -7,21 +7,23 @@ const path = require('path');
 const app = express();
 
 // создаем парсер для данных в формате json
-const jsonParser = bodyParser.json();
 const publicPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicPath));
-app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post('/register', (req, res) => {
-  const {email, password, passwordConfirm} = req.body;
+  const { email, password, passwordConfirm } = req.body;
 
   if (password !== passwordConfirm) {
-    // send error
+    res.status(400);
+    res.send('Password and confirm password are not the same');
   }
 
-  res.redirect(303, '/thank-you');
+  res.send({
+    email,
+  });
 });
 
 // начинаем прослушивать подключения на 3000 порту
