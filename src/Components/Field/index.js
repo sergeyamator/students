@@ -7,7 +7,6 @@ function onChangeHandler(e, props) {
 }
 
 const Field = props => (
-
   <input
     type={props.type}
     className={props.className}
