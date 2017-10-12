@@ -7,13 +7,16 @@ function onChangeHandler(e, props) {
 }
 
 const Field = props => (
+
   <input
     type={props.type}
     className={props.className}
     name={props.name}
     placeholder={props.placeholder}
     required
-    onChange={(e) => { onChangeHandler(e, props); }}
+    onChange={(e) => {
+      onChangeHandler(e, props);
+    }}
   />
 );
 

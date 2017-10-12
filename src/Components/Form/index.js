@@ -25,6 +25,8 @@ class Form extends Component {
     this.props.onRegister(this.state);
   };
 
+  isDisabled = () => !this.state.email && !this.state.password && !this.state.passwordConfirm;
+
   render() {
     return (
       <form
@@ -59,7 +61,7 @@ class Form extends Component {
         />
 
         <div className="form-button">
-          <Button type="submit">Войти</Button>
+          <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
           <Button type="reset">Очистить</Button>
         </div>
 
