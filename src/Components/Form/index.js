@@ -58,7 +58,7 @@ class Form extends Component {
           onChange={this.onInputChange}
         />
 
-        <div className="form-button">s
+        <div className="form-button">
           <Button type="submit">Войти</Button>
           <Button type="reset">Очистить</Button>
         </div>
