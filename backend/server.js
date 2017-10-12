@@ -13,7 +13,7 @@ app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
   const { email, password, passwordConfirm } = req.body;
 
   if (password !== passwordConfirm) {
