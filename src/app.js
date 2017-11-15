@@ -5,6 +5,7 @@ import Form from './Components/Form/index';
 import './styles.scss';
 
 import registerRequestAction from './actions/register';
+import loginRequestAction from './actions/login';
 
 function mapStateToProps() {
   return {};
@@ -16,7 +17,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(registerRequestAction(data));
     },
     onLogin(data) {
-      dispatch(registerRequestAction(data));
+      dispatch(loginRequestAction(data));
     },
   };
 }

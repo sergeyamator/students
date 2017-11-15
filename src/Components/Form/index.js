@@ -9,9 +9,12 @@ import './style.scss';
 class Form extends Component {
   static propTypes = {
     onRegister: PropTypes.func.isRequired,
+    onLogin: PropTypes.func.isRequired,
   };
 
-  state = {};
+  state = {
+    newUser: false,
+  };
 
   onInputChange = (data) => {
     this.setState({
@@ -22,7 +25,13 @@ class Form extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-    this.props.onRegister(this.state);
+
+    if (this.state.newUser) {
+      this.props.onRegister(this.state);
+      return;
+    }
+
+    this.props.onLogin();
   };
 
   isDisabled = () => !(
