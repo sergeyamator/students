@@ -9,6 +9,7 @@ import './style.scss';
 class Form extends Component {
   static propTypes = {
     onRegister: PropTypes.func.isRequired,
+    onLogin: PropTypes.func.isRequired,
   };
 
   state = {};
@@ -22,7 +23,7 @@ class Form extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-    this.props.onRegister(this.state);
+    this.props.onLogin(this.state);
   };
 
   isDisabled = () => !(
