@@ -23,7 +23,13 @@ class Form extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-    this.props.onLogin(this.state);
+
+    if (this.state.newUser) {
+      this.props.onRegister(this.state);
+      return;
+    }
+
+    this.props.onLogin();
   };
 
   isDisabled = () => !(
@@ -79,7 +85,7 @@ class Form extends Component {
           <Button type="reset">Очистить</Button>
         </div>
 
-        <Checkbox label="Я новый пользователь" />
+        <Checkbox label="Я новый пользователь"/>
       </form>
     );
   }
