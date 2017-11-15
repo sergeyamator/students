@@ -32,25 +32,24 @@ describe('Validation', () => {
   });
 
   describe('#isMinLength', () => {
-    it('should return true if length is less than expected value', () => {
-      const minLength = 5;
+    const minLength = 5;
+    it('should return true if length is more than expected value', () => {
       expect(validator.isMinLength('sadfasdfsadfasf', minLength)).toBe(true);
     });
 
-    it('should return false if length is more than expected value', () => {
-      const minLength = 25;
+    it('should return false if length is less than expected value', () => {
       expect(validator.isMinLength('4a35', minLength)).toBe(false);
     });
   });
 
   describe('#isMaxLength', () => {
-    const maxLength = 5;
+    const maxLength = 10;
 
-    it('should return true if length is more than expected value', () => {
+    it('should return true if length is less than expected value', () => {
       expect(validator.isMaxLength('a', maxLength)).toBe(true);
     });
 
-    it('should return true if length is more than expected value', () => {
+    it('should return false if length is more than expected value', () => {
       expect(validator.isMaxLength('4afasdfasfasfd35', maxLength)).toBe(false);
     });
   });
