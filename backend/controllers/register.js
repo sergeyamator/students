@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('../models/user');
+require('../models/mentor');
 
 const router = express.Router();
-const User = mongoose.model('User');
+const User = mongoose.model('Mentor');
 
 router.post('/', async (req, res) => {
   const { password, passwordConfirm } = req.body;
