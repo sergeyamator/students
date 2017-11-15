@@ -8,7 +8,7 @@
     "no-mixed-operators": 0,
     "prefer-destructuring": 0,
     "react/jsx-filename-extension": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
     "no-useless-escape": 0
   },
   "env": {
