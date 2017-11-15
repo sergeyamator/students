@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const errorHandlers = require('./handlers/errorHandlers');
 const credentials = require('./credentials');
 const registerController = require('./controllers/register');
+const studentsController = require('./controllers/students');
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -37,6 +38,7 @@ app.use(require('express-session')({
 }));
 
 app.use('/register', registerController);
+app.use('/students', studentsController);
 
 // If that above routes didnt work, we 404 them and forward to error handler
 app.use(errorHandlers.notFound);
