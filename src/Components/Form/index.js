@@ -12,7 +12,9 @@ class Form extends Component {
     onLogin: PropTypes.func.isRequired,
   };
 
-  state = {};
+  state = {
+    newUser: false,
+  };
 
   onInputChange = (data) => {
     this.setState({
@@ -85,7 +87,7 @@ class Form extends Component {
           <Button type="reset">Очистить</Button>
         </div>
 
-        <Checkbox label="Я новый пользователь"/>
+        <Checkbox label="Я новый пользователь" />
       </form>
     );
   }
