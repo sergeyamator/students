@@ -5,7 +5,9 @@ require('../models/mentor');
 const router = express.Router();
 const User = mongoose.model('Mentor');
 
-router.post('/', async (req, res) => {
+router.post('/', register);
+
+async function register(req, res) {
   const { password, passwordConfirm } = req.body;
 
   if (password !== passwordConfirm) {
@@ -20,6 +22,6 @@ router.post('/', async (req, res) => {
   } catch (e) {
     throw Error(e);
   }
-});
+}
 
 module.exports = router;
