@@ -8,14 +8,14 @@ export default {
   isEmail(input) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(input);
   },
-  isMaxLength(input) {
-    if (input.length <= 10) {
+  isMaxLength(input, value) {
+    if (input.length <= value) {
       return true;
     }
     return false;
   },
-  isMinLength(input) {
-    if (input.length >= 5) {
+  isMinLength(input, value) {
+    if (input.length >= value) {
       return true;
     }
     return false;
