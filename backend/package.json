@@ -15,8 +15,6 @@
     "es6-promise": "^4.1.1",
     "express": "^4.15.2",
     "express-session": "^1.15.6",
-    "history": "^4.7.2",
-    "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.9.8",
     "node-sass": "^4.3.0",
     "nodemon": "^1.11.0",
