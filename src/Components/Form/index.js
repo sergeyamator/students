@@ -25,6 +25,13 @@ class Form extends Component {
     this.props.onRegister(this.state);
   };
 
+  isDisabled = () => !(
+    this.state.email &&
+    this.state.password &&
+    this.state.passwordConfirm &&
+    this.state.name
+  );
+
   render() {
     return (
       <form
@@ -33,6 +40,14 @@ class Form extends Component {
         onSubmit={this.onSave}
       >
         <Title>Войти в личный кабинет</Title>
+
+        <Field
+          name="name"
+          type="text"
+          placeholder="Введите свое имя"
+          className="input"
+          onChange={this.onInputChange}
+        />
 
         <Field
           name="email"
@@ -59,7 +74,7 @@ class Form extends Component {
         />
 
         <div className="form-button">
-          <Button type="submit">Войти</Button>
+          <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
           <Button type="reset">Очистить</Button>
         </div>
 

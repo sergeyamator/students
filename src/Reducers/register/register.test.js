@@ -9,7 +9,10 @@ describe('Register reducer', () => {
       name: 'Dima',
       email: 'dmitry@gmail.com',
     };
-    const expectedState = user.email;
+    const expectedState = {
+      email: user.email,
+      name: user.name,
+    };
 
     expect(reducer(initState, { type: REGISTER_SUCCESS, payload: user })).toEqual(expectedState);
   });

@@ -7,7 +7,10 @@ const initState = null;
 
 export default (state = initState, action) => {
   if (action.type === REGISTER_SUCCESS) {
-    return action.payload.email;
+    return {
+      email: action.payload.email,
+      name: action.payload.name,
+    };
   }
 
   if (action.type === REGISTER_FAILED) {

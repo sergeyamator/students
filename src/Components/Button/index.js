@@ -6,6 +6,7 @@ const Button = props => (
   <button
     className="button"
     type={props.type}
+    disabled={props.disabled}
   >
     {props.children}
   </button>
@@ -14,6 +15,7 @@ const Button = props => (
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  disabled: PropTypes.func.isRequired,
 };
 
 export default Button;
