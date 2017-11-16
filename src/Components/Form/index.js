@@ -34,6 +34,13 @@ class Form extends Component {
     this.props.onLogin();
   };
 
+  onCheckboxChange = (e) => {
+    this.setState({
+      ...this.state,
+      newUser: e.target.checked,
+    });
+  };
+
   isDisabled = () => !(
     this.state.email &&
     this.state.password &&
@@ -74,20 +81,24 @@ class Form extends Component {
           onChange={this.onInputChange}
         />
 
-        <Field
-          name="passwordConfirm"
-          type="password"
-          placeholder="Подтвердите пароль"
-          className="input"
-          onChange={this.onInputChange}
-        />
+        {
+          this.state.newUser ?
+            <Field
+              name="passwordConfirm"
+              type="password"
+              placeholder="Подтвердите пароль"
+              className="input"
+              onChange={this.onInputChange}
+            /> :
+            null
+        }
 
         <div className="form-button">
           <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
           <Button type="reset">Очистить</Button>
         </div>
 
-        <Checkbox label="Я новый пользователь" />
+        <Checkbox onChange={this.onCheckboxChange} label="Я новый пользователь" />
       </form>
     );
   }

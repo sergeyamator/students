@@ -10,6 +10,7 @@ const Checkbox = props => (
       type="checkbox"
       name="checkbox"
       className="checkbox-input"
+      onChange={props.onChange}
     />
     <span className="checkbox-element">check</span>
   </label>
@@ -17,6 +18,7 @@ const Checkbox = props => (
 
 Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Checkbox;
