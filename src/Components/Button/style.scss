@@ -17,3 +17,7 @@
     transition: .5s all;
   }
 }
+
+button[disabled] {
+  background: rgba(11, 67, 121, 0.28);
+}
