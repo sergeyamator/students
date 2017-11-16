@@ -18,4 +18,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
 };
 
+Button.defaultProps = {
+  disabled: true,
+};
+
 export default Button;
