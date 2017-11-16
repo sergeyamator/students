@@ -95,7 +95,7 @@ class Form extends Component {
 
         <div className="form-button">
           <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
-          <Button type="reset">Очистить</Button>
+          <Button type="reset" disabled={false}>Очистить</Button>
         </div>
 
         <Checkbox onChange={this.onCheckboxChange} label="Я новый пользователь" />
