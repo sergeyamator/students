@@ -25,7 +25,7 @@ const registerRequest = () => ({
 export const register = data => (dispatch) => {
   dispatch(registerRequest());
 
-  const registerUrl = '/api/register';
+  const registerUrl = '/register';
   const options = {
     method: 'POST',
     headers: {
