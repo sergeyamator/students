@@ -25,7 +25,7 @@ const registerRequest = () => ({
 export const login = data => (dispatch) => {
   dispatch(registerRequest());
 
-  const registerUrl = '/api/login';
+  const registerUrl = '/login';
   const options = {
     method: 'POST',
     headers: {
