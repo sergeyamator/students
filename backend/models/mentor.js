@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
@@ -15,6 +14,25 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+exports.login = (email, password, cb) => {
+  User.findOne({ email })
+    .exec((err, user) => {
+      if (err) {
+        return cb(err);
+      } else if (!user) {
+        const err = new Error('User not found.');
+        err.status = 401;
+        return cb(err);
+      }
+
+      bcrypt.compare(password, user.password, (err, result) => {
+        return result
+          ? cb(null, user)
+          : cb(err);
+      });
+    });
+};
+
 // hashing a password before saving it to the database
 UserSchema.pre('save', function(next) {
   const user = this;
@@ -29,5 +47,6 @@ UserSchema.pre('save', function(next) {
     });
 });
 
+
 const User = mongoose.model('Mentor', UserSchema);
-module.exports = User;
+exports.Mentor = User;

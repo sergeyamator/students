@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('../models/mentor');
+require('../models/mentor').Mentor();
 
 const router = express.Router();
 const User = mongoose.model('Mentor');
