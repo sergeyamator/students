@@ -6,7 +6,7 @@ import Title from '../Title/index';
 import Field from '../Field/index';
 import './style.scss';
 
-class Form extends Component {
+class AuthorizationForm extends Component {
   static propTypes = {
     onRegister: PropTypes.func.isRequired,
     onLogin: PropTypes.func.isRequired,
@@ -104,4 +104,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default AuthorizationForm;
