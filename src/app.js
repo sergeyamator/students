@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Form from './Components/Form/index';
+import AutorizationForm from './Components/AutorizationForm/index';
 import './styles.scss';
 
 import registerRequestAction from './actions/register';
@@ -32,7 +32,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <Form onRegister={this.props.onRegisterSubmit} onLogin={this.props.onLogin} />
+        <AutorizationForm onRegister={this.props.onRegisterSubmit} onLogin={this.props.onLogin} />
       </div>
     );
   }
