@@ -1,0 +1,23 @@
+.module {
+  width: 400px;
+  display: flex;
+  background: aqua;
+  color: black;
+  position: relative;
+  padding: 20px;
+}
+
+.module .checkbox {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 0;
+  flex-grow: 1;
+  padding-right: 30px;
+  font-size: 18px;
+}
+
+.module .checkbox-element {
+  right: 0;
+  left: auto;
+}
+
