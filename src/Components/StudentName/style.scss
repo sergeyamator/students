@@ -1,0 +1,21 @@
+.student-name {
+  font-size: 22px;
+
+  display: flex;
+
+  box-sizing: border-box;
+  min-width: 150px;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 40px;;
+  padding: 10px 20px;
+
+  letter-spacing: .15em;
+  text-transform: uppercase;
+
+  color: white;
+  border-radius: 20px;
+  background: indianred;
+
+  justify-content: center;
+}
