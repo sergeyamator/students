@@ -38,4 +38,4 @@ public
 # Ignore yarn files
 yarn.lock
 
-backend/credentials.js
+backend/.env
