@@ -5,9 +5,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router';
+
 import { routerMiddleware } from 'react-router-redux';
-import { BrowserRouter, Switch } from 'react-router-dom';
+
 import rootReducer from './Reducers';
 
 import App from './app';
@@ -39,11 +39,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={App} />
-      </Switch>
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.querySelector('#app'),
 );

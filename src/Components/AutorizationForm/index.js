@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Checkbox from '../Checkbox/index';
 import Button from '../Button/index';
 import Title from '../Title/index';
 import Field from '../Field/index';
+import login from '../../actions/login';
 import './style.scss';
 
 class AuthorizationForm extends Component {
   static propTypes = {
-    onRegister: PropTypes.func.isRequired,
-    onLogin: PropTypes.func.isRequired,
-  };
+    login: PropTypes.func.isRequired,
+  }
 
   state = {
     newUser: false,
@@ -27,11 +28,11 @@ class AuthorizationForm extends Component {
     e.preventDefault();
 
     if (this.state.newUser) {
-      this.props.onRegister(this.state);
+      this.onRegister(this.state);
       return;
     }
 
-    this.props.onLogin();
+    this.props.login(this.state);
   };
 
   onCheckboxChange = (e) => {
@@ -44,7 +45,6 @@ class AuthorizationForm extends Component {
   isDisabled = () => !(
     this.state.email &&
     this.state.password &&
-    this.state.passwordConfirm &&
     this.state.name
   );
 
@@ -54,6 +54,7 @@ class AuthorizationForm extends Component {
         method="post"
         className="form"
         onSubmit={this.onSave}
+        name={this.state.newUser ? 'register' : 'login'}
       >
         <Title>Войти в личный кабинет</Title>
 
@@ -104,4 +105,12 @@ class AuthorizationForm extends Component {
   }
 }
 
-export default AuthorizationForm;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login(userData) {
+      dispatch(login(userData));
+    },
+  };
+}
+export default connect(undefined, mapDispatchToProps)(AuthorizationForm);

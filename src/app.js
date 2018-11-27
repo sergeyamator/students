@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AutorizationForm from './Components/AutorizationForm/index';
+import { Route, Redirect } from 'react-router';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import AutorizationForm from './Components/AutorizationForm';
 import './styles.scss';
 
 import registerRequestAction from './actions/register';
@@ -24,15 +25,15 @@ function mapDispatchToProps(dispatch) {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
-  static propTypes = {
-    onRegisterSubmit: PropTypes.func.isRequired,
-    onLogin: PropTypes.func.isRequired,
-  };
-
   render() {
     return (
       <div className="container">
-        <AutorizationForm onRegister={this.props.onRegisterSubmit} onLogin={this.props.onLogin} />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/login" component={AutorizationForm} />
+            <Redirect from="*" to="/login" />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

@@ -15,19 +15,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-// hashing a password before saving it to the database
-UserSchema.pre('save', function(next) {
-  const user = this;
-
-  bcrypt.hash(user.password, 10)
-    .then((hash) => {
-      this.password = hash;
-      next();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-const User = mongoose.model('Mentor', UserSchema);
-module.exports = User;
+module.exports = mongoose.model('Mentor', UserSchema);

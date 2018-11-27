@@ -22,10 +22,10 @@ const registerRequest = () => ({
   isFetching: true,
 });
 
-export const login = data => (dispatch) => {
+const login = data => (dispatch) => {
   dispatch(registerRequest());
 
-  const registerUrl = '/login';
+  const registerUrl = 'http://localhost:8888/login';
   const options = {
     method: 'POST',
     headers: {

@@ -10,7 +10,7 @@
     "dev": "webpack-dashboard -- webpack-dev-server --progress --profile --colors",
     "test": "npm run lint && npm run jest",
     "jest": "jest",
-    "run-backend": "node backend/server.js"
+    "run-backend": "nodemon backend/app.js"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
