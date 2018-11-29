@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
-import rootReducer from '../Reducers';
+import rootReducer from '../reducers';
 import { getToken } from '../services';
 
 const enhancers = [];

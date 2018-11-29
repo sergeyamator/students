@@ -13,7 +13,10 @@ function mapStateToProps(state) {
 @connect(mapStateToProps)
 class PrivateRoutes extends Component {
   static propTypes = {
-    children: PropTypes.shape().isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
     isLoggedIn: PropTypes.bool,
   }
 

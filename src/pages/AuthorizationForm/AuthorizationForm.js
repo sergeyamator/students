@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Button, Checkbox, Title, Field } from '../../Components/';
+import { Button, Checkbox, Title, Field } from '../../components/';
 import { auth } from '../../actions';
 import { isLoggedIn } from '../../helpers';
 import './style.scss';
@@ -123,9 +123,6 @@ function mapDispatchToProps(dispatch) {
   return {
     auth(url, userData) {
       dispatch(auth(url, userData));
-    },
-    checkMentorAuth() {
-      dispatch(checkMentorAuth());
     },
   };
 }
