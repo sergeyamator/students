@@ -1,31 +1,32 @@
 import fetch from 'isomorphic-fetch';
+import { url } from '../config/url';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_REQUEST,
 } from './actions';
 
-const registerSuccess = data => ({
+const loginSuccess = data => ({
   type: LOGIN_SUCCESS,
   payload: data,
   isFetching: false,
 });
 
-const registerFailed = error => ({
+const loginFailed = error => ({
   type: LOGIN_FAILED,
   payload: error,
   isFetching: false,
 });
 
-const registerRequest = () => ({
+const loginRequest = () => ({
   type: LOGIN_REQUEST,
   isFetching: true,
 });
 
 const login = data => (dispatch) => {
-  dispatch(registerRequest());
+  dispatch(loginRequest());
 
-  const registerUrl = 'http://localhost:8888/login';
+  const registerUrl = `${url.api}/login`;
   const options = {
     method: 'POST',
     headers: {
@@ -36,9 +37,9 @@ const login = data => (dispatch) => {
 
   return fetch(registerUrl, options)
     .then(response => response.json())
-    .then(response => dispatch(registerSuccess(response)))
-    .catch(error => dispatch(registerFailed(error)));
+    .then(response => dispatch(loginSuccess(response)))
+    .catch(error => dispatch(loginFailed(error)));
 };
 
-export default login;
+export { login };
 

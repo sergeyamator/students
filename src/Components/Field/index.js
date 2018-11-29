@@ -26,4 +26,4 @@ Field.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-export default Field;
+export { Field };

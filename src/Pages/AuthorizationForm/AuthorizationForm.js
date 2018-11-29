@@ -1,52 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Checkbox from '../Checkbox/index';
-import Button from '../Button/index';
-import Title from '../Title/index';
-import Field from '../Field/index';
-import login from '../../actions/login';
+import { Button, Checkbox, Title, Field } from '../../Components/';
+import { login, register } from '../../actions';
 import './style.scss';
 
 class AuthorizationForm extends Component {
   static propTypes = {
     login: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
   }
 
   state = {
     newUser: false,
-  };
+  }
 
   onInputChange = (data) => {
     this.setState({
       ...this.state,
       ...data,
     });
-  };
+  }
 
   onSave = (e) => {
     e.preventDefault();
 
     if (this.state.newUser) {
-      this.onRegister(this.state);
+      this.props.register(this.state);
       return;
     }
 
     this.props.login(this.state);
-  };
+  }
 
   onCheckboxChange = (e) => {
     this.setState({
       ...this.state,
       newUser: e.target.checked,
     });
-  };
+  }
 
   isDisabled = () => !(
     this.state.email &&
     this.state.password &&
-    this.state.name
-  );
+    this.state.username
+  )
 
   render() {
     return (
@@ -58,13 +56,16 @@ class AuthorizationForm extends Component {
       >
         <Title>Войти в личный кабинет</Title>
 
-        <Field
-          name="name"
-          type="text"
-          placeholder="Введите свое имя"
-          className="input"
-          onChange={this.onInputChange}
-        />
+        { this.state.newUser && (
+          <Field
+            name="username"
+            type="text"
+            placeholder="Введите свое имя"
+            className="input"
+            onChange={this.onInputChange}
+          />
+        )
+        }
 
         <Field
           name="email"
@@ -83,15 +84,15 @@ class AuthorizationForm extends Component {
         />
 
         {
-          this.state.newUser ?
+          this.state.newUser && (
             <Field
               name="passwordConfirm"
               type="password"
               placeholder="Подтвердите пароль"
               className="input"
               onChange={this.onInputChange}
-            /> :
-            null
+            />
+          )
         }
 
         <div className="form-button">
@@ -105,12 +106,17 @@ class AuthorizationForm extends Component {
   }
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     login(userData) {
       dispatch(login(userData));
     },
+    register(userData) {
+      dispatch(register(userData));
+    },
   };
 }
-export default connect(undefined, mapDispatchToProps)(AuthorizationForm);
+
+const AuthorizationFormWithConnect = connect(undefined, mapDispatchToProps)(AuthorizationForm);
+export { AuthorizationFormWithConnect };
+

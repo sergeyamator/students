@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { url } from '../config';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAILED,
@@ -22,10 +23,10 @@ const registerRequest = () => ({
   isFetching: true,
 });
 
-export const register = data => (dispatch) => {
+const register = data => (dispatch) => {
   dispatch(registerRequest());
 
-  const registerUrl = '/register';
+  const registerUrl = `${url.api}/register`;
   const options = {
     method: 'POST',
     headers: {
@@ -40,5 +41,5 @@ export const register = data => (dispatch) => {
     .catch(error => dispatch(registerFailed(error)));
 };
 
-export default register;
+export { register };
 

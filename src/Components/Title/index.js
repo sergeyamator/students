@@ -10,4 +10,4 @@ Title.propTypes = {
   children: PropTypes.string.isRequired,
 };
 
-export default Title;
+export { Title };
