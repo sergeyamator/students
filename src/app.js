@@ -1,33 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Routes } from './config';
 import './styles.scss';
 
-import registerRequestAction from './actions/register';
-import loginRequestAction from './actions/login';
+const App = () => (
+  <div className="container">
+    <Routes />
+  </div>
+);
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onRegisterSubmit(data) {
-      dispatch(registerRequestAction(data));
-    },
-    onLogin(data) {
-      dispatch(loginRequestAction(data));
-    },
-  };
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
-export default class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <Routes />
-      </div>
-    );
-  }
-}
+export { App };

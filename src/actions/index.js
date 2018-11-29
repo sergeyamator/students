@@ -1,3 +1,4 @@
-export * from './login';
-export * from './register';
+export * from './auth';
 export * from './actions';
+export * from './request';
+export * from './fetchMentor';

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Button, Checkbox, Title, Field } from '../../Components/';
-import { login, register } from '../../actions';
+import { auth } from '../../actions';
+import { isLoggedIn } from '../../helpers';
 import './style.scss';
 
 class AuthorizationForm extends Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
-    register: PropTypes.func.isRequired,
+    auth: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isLoggedIn: false,
   }
 
   state = {
@@ -26,11 +32,11 @@ class AuthorizationForm extends Component {
     e.preventDefault();
 
     if (this.state.newUser) {
-      this.props.register(this.state);
+      this.props.auth('register', this.state);
       return;
     }
 
-    this.props.login(this.state);
+    this.props.auth('login', this.state);
   }
 
   onCheckboxChange = (e) => {
@@ -42,11 +48,14 @@ class AuthorizationForm extends Component {
 
   isDisabled = () => !(
     this.state.email &&
-    this.state.password &&
-    this.state.username
+    this.state.password
   )
 
   render() {
+    if (this.props.isLoggedIn) {
+      return <Redirect to="/profile" />;
+    }
+
     return (
       <form
         method="post"
@@ -106,17 +115,25 @@ class AuthorizationForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isLoggedIn: isLoggedIn(state),
+});
+
 function mapDispatchToProps(dispatch) {
   return {
-    login(userData) {
-      dispatch(login(userData));
+    auth(url, userData) {
+      dispatch(auth(url, userData));
     },
-    register(userData) {
-      dispatch(register(userData));
+    checkMentorAuth() {
+      dispatch(checkMentorAuth());
     },
   };
 }
 
-const AuthorizationFormWithConnect = connect(undefined, mapDispatchToProps)(AuthorizationForm);
+const AuthorizationFormWithConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AuthorizationForm);
+
 export { AuthorizationFormWithConnect };
 
