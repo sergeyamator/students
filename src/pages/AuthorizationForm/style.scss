@@ -1,3 +1,15 @@
+.formWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("./images/bg.jpg") no-repeat 0 0;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
 .form {
   width: 35%;
   border-radius: 10px;
@@ -9,7 +21,7 @@
   background-size: cover;
 }
 
-.form-button {
+.formButton {
   margin: 3.7em 0;
   display: flex;
   justify-content: space-between;

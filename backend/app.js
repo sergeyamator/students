@@ -8,8 +8,6 @@ require('./config/db/mongoose');
 
 const app = express();
 
-
-
 require('./config/middlewares')(app);
 require('./config/routes')(app);
 

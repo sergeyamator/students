@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.scss';
 
 const Checkbox = props => (
-  <label htmlFor="user" className="checkbox">
+  <label htmlFor="user" className={styles.checkbox}>
     {props.label}
     <input
       id="user"
       type="checkbox"
       name="checkbox"
-      className="checkbox-input"
+      className={styles.checkboxInput}
       onChange={props.onChange}
     />
-    <span className="checkbox-element">check</span>
+    <span className={styles.checkboxElement}>check</span>
   </label>
 );
 

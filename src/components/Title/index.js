@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.scss';
 
 const Title = props => (
-  <h1 className="main-title">{props.children}</h1>
+  <h1 className={styles.title}>{props.children}</h1>
 );
 
 Title.propTypes = {

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { Button, Checkbox, Title, Field } from '../../components/';
 import { auth } from '../../actions';
 import { isLoggedIn } from '../../helpers';
-import './style.scss';
+import styles from './style.scss';
 
 class AuthorizationForm extends Component {
   static propTypes = {
@@ -57,60 +57,62 @@ class AuthorizationForm extends Component {
     }
 
     return (
-      <form
-        method="post"
-        className="form"
-        onSubmit={this.onSave}
-        name={this.state.newUser ? 'register' : 'login'}
-      >
-        <Title>Войти в личный кабинет</Title>
+      <section className={styles.formWrapper}>
+        <form
+          method="post"
+          className={styles.form}
+          onSubmit={this.onSave}
+          name={this.state.newUser ? 'register' : 'login'}
+        >
+          <Title>Войти в личный кабинет</Title>
 
-        { this.state.newUser && (
-          <Field
-            name="username"
-            type="text"
-            placeholder="Введите свое имя"
-            className="input"
-            onChange={this.onInputChange}
-          />
-        )
-        }
-
-        <Field
-          name="email"
-          type="email"
-          placeholder="Введите свой email"
-          className="input"
-          onChange={this.onInputChange}
-        />
-
-        <Field
-          name="password"
-          type="password"
-          placeholder="Введите свой пароль"
-          className="input"
-          onChange={this.onInputChange}
-        />
-
-        {
-          this.state.newUser && (
+          { this.state.newUser && (
             <Field
-              name="passwordConfirm"
-              type="password"
-              placeholder="Подтвердите пароль"
+              name="username"
+              type="text"
+              placeholder="Введите свое имя"
               className="input"
               onChange={this.onInputChange}
             />
           )
-        }
+          }
 
-        <div className="form-button">
-          <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
-          <Button type="reset" disabled={false}>Очистить</Button>
-        </div>
+          <Field
+            name="email"
+            type="email"
+            placeholder="Введите свой email"
+            className="input"
+            onChange={this.onInputChange}
+          />
 
-        <Checkbox onChange={this.onCheckboxChange} label="Я новый пользователь" />
-      </form>
+          <Field
+            name="password"
+            type="password"
+            placeholder="Введите свой пароль"
+            className="input"
+            onChange={this.onInputChange}
+          />
+
+          {
+            this.state.newUser && (
+              <Field
+                name="passwordConfirm"
+                type="password"
+                placeholder="Подтвердите пароль"
+                className="input"
+                onChange={this.onInputChange}
+              />
+            )
+          }
+
+          <div className={styles.formButton}>
+            <Button type="submit" disabled={this.isDisabled()}>Войти</Button>
+            <Button type="reset" disabled={false}>Очистить</Button>
+          </div>
+
+          <Checkbox onChange={this.onCheckboxChange} label="Я новый пользователь" />
+        </form>
+      </section>
     );
   }
 }

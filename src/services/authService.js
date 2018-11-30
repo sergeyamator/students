@@ -7,3 +7,9 @@ export const logout = () => {
 };
 
 export const getToken = () => localStorage.getItem('token');
+
+export const authService = {
+  logout,
+  finishAuthentication,
+  getToken,
+};

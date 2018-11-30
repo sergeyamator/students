@@ -2,15 +2,18 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const Mentor = require('../../models/mentor');
 const bcrypt = require('bcrypt');
+const { JWT_SECRET } = require('../../config');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    res.status(400);
-    res.send('You did not provide email or password');
-    return;
+    return next({
+      name: 'AuthorizationError',
+      status: 400,
+      message: 'You did not provide email or password',
+    });
   }
 
   try {
@@ -18,7 +21,7 @@ router.post('/', (req, res) => {
       .exec((err, mentor) => {
         if (!mentor) {
           res.status(400);
-          res.send('User is not exist');
+          res.send('Wrong user email or password');
         }
 
         bcrypt.compare(password, mentor.password)
@@ -27,10 +30,11 @@ router.post('/', (req, res) => {
               const token = jwt.sign({
                 sub: mentor.id,
                 name: mentor.name,
-              }, process.env.SECRET);
+              }, JWT_SECRET);
 
-              res.status(200);
-              res.json(token);
+              res
+                .status(200)
+                .json(token);
             } else {
               res.status(401);
               res.send('Password is wrong');

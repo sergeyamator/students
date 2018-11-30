@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.scss';
 
 function onChangeHandler(e, props) {
   props.onChange({ [props.name]: e.target.value });
@@ -9,7 +9,7 @@ function onChangeHandler(e, props) {
 const Field = props => (
   <input
     type={props.type}
-    className={props.className}
+    className={styles.input}
     name={props.name}
     placeholder={props.placeholder}
     required

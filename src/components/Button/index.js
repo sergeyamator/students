@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.scss';
 
 const Button = props => (
   <button
-    className="button"
+    className={styles.button}
     type={props.type}
     disabled={props.disabled}
   >

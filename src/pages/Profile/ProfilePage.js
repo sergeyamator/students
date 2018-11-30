@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchMentor } from '../../actions';
+import styles from './ProfilePage.scss';
 
-const mapStateToProps = () => {
-
-}
-
+const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   getMentorData() {
     dispatch(fetchMentor());
@@ -24,7 +22,9 @@ class ProfilePage extends Component {
 
   render() {
     return (
-      <h1>Profile Page</h1>
+      <section className={styles.profile}>
+
+      </section>
     );
   }
 }

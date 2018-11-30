@@ -21,7 +21,7 @@ export const fetchFailed = error => ({
   payload: error,
 });
 
-const fetchMentor = (authUrl, data) => (dispatch) => {
+const fetchMentor = () => (dispatch) => {
   dispatch(request(true));
 
   const requestUrl = `${url.api}/mentor`;
@@ -31,7 +31,6 @@ const fetchMentor = (authUrl, data) => (dispatch) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify(data),
   };
 
   return fetch(requestUrl, options)

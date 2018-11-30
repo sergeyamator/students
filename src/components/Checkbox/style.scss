@@ -12,13 +12,13 @@
   }
 }
 
-.checkbox-input {
+.checkboxInput {
   position: absolute;
   left: -99999px;
   top: 0;
 }
 
-.checkbox-element {
+.checkboxElement {
   width: 20px;
   display: block;
   border: 1px solid;
@@ -30,7 +30,7 @@
   font-size: 0;
 }
 
-.checkbox-input:checked + .checkbox-element {
+.checkboxInput:checked + .checkboxElement {
   &:after {
     background: #ffffff;
     position: absolute;
@@ -42,5 +42,4 @@
     left: 5px;
     border-radius: 2px;
   }
-
 }

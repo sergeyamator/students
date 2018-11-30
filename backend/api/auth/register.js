@@ -1,10 +1,9 @@
-const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Mentor = require('../../models/mentor');
+const { JWT_SECRET } = require('../../config');
 
 const saltRounds = 10;
-const router = express.Router();
 
 module.exports = async (req, res) => {
   const { password, passwordConfirm } = req.body;
@@ -29,7 +28,7 @@ module.exports = async (req, res) => {
     const token = jwt.sign({
       sub: mentorData.id,
       name: mentorData.name,
-    }, process.env.SECRET);
+    }, JWT_SECRET);
 
     res.status(200);
     res.json(token);
@@ -37,7 +36,5 @@ module.exports = async (req, res) => {
     res.status(500);
     res.json(e);
   }
-
-  return router;
 };
 

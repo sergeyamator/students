@@ -1,3 +1,6 @@
+const autoprefixer = require('autoprefixer');
+
+
 module.exports = [
   {
     test: /\.jsx?$/,
@@ -8,6 +11,45 @@ module.exports = [
     test: /\.css$/,
     loaders: ['style-loader', 'css-loader?importLoaders=1'],
     exclude: ['node_modules']
+  },
+  {
+    test: /\.scss$/,
+    use: [
+      require.resolve('style-loader'),
+      {
+        loader: require.resolve('css-loader'),
+        options: {
+          importLoaders: 1,
+          modules: true, // Add this option
+          localIdentName: '[name]__[local]__[hash:base64:5]' // Add this option
+        },
+      },
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          // Necessary for external CSS imports to work
+          // https://github.com/facebookincubator/create-react-app/issues/2677
+          ident: 'postcss',
+          plugins: () => [
+            require('postcss-flexbugs-fixes'),
+            autoprefixer({
+              browsers: [
+                '>1%',
+                'last 4 versions',
+                'Firefox ESR',
+                'not ie < 9', // React doesn't support IE8 anyway
+              ],
+              flexbox: 'no-2009',
+            }),
+          ],
+        },
+      },
+      // Add 'sass-loader' with includePaths
+      {
+        loader: require.resolve('sass-loader'),
+      }
+    ],
+    exclude: ['node_modules'],
   },
   {
     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -25,23 +67,7 @@ module.exports = [
     loader: "url-loader?limit=10000&mimetype=application/octet-stream"
   },
   {
-    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    exclude: /(node_modules|bower_components)/,
-    loader: "url-loader?limit=10000&mimetype=image/svg+xml"
-  },
-  {
-    test: /\.gif/,
-    exclude: /(node_modules|bower_components)/,
-    loader: "url-loader?limit=10000&mimetype=image/gif"
-  },
-  {
-    test: /\.jpg/,
-    exclude: /(node_modules|bower_components)/,
-    loader: "url-loader?limit=10000&mimetype=image/jpg"
-  },
-  {
-    test: /\.png/,
-    exclude: /(node_modules|bower_components)/,
-    loader: "url-loader?limit=10000&mimetype=image/png"
+    test: /\.(jpg|gif|png|svg)$/,
+    loader: 'url-loader',
   },
 ];

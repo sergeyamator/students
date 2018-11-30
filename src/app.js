@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Routes } from './config';
-import './styles.scss';
+import { isLoggedIn } from './helpers';
+import { Header } from './components';
 
-const App = () => (
-  <div className="container">
-    <Routes />
-  </div>
-);
+const mapStateToProps = state => ({
+  loggedIn: isLoggedIn(state),
+});
+
+@connect(mapStateToProps)
+class App extends Component {
+  render() {
+    return (
+    <Fragment>
+      <Header />
+      <Routes />
+    </Fragment>
+    );
+  }
+}
 
 export { App };

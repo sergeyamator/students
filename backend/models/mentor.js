@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const MentorSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
@@ -17,4 +17,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Mentor', UserSchema);
+module.exports = mongoose.model('Mentor', MentorSchema);
