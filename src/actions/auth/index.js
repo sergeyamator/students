@@ -51,4 +51,3 @@ const auth = (authUrl, data) => (dispatch) => {
 };
 
 export { auth, logout };
-

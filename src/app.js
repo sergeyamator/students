@@ -12,10 +12,10 @@ const mapStateToProps = state => ({
 class App extends Component {
   render() {
     return (
-    <Fragment>
-      <Header />
-      <Routes />
-    </Fragment>
+      <Fragment>
+        <Header />
+        <Routes />
+      </Fragment>
     );
   }
 }

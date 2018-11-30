@@ -20,4 +20,3 @@ const Routes = () => (
 );
 
 export { Routes };
-

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import { isLoggedIn } from '../../../helpers';
+import { isLoggedIn as isLoggedInService } from '../../../helpers';
 
 function mapStateToProps(state) {
   return {
-    isLoggedIn: isLoggedIn(state),
+    isLoggedIn: isLoggedInService(state),
   };
 }
 
@@ -25,8 +25,9 @@ class PrivateRoutes extends Component {
   }
 
   render() {
-    if (this.props.isLoggedIn) {
-      return this.props.children;
+    const { props: { isLoggedIn, children } } = this;
+    if (isLoggedIn) {
+      return children;
     }
 
     return <Redirect to="/login" />;
@@ -34,4 +35,3 @@ class PrivateRoutes extends Component {
 }
 
 export { PrivateRoutes };
-

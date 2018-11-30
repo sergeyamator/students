@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
 
-const Checkbox = props => (
+const Checkbox = ({ label, onChange }) => (
   <label htmlFor="user" className={styles.checkbox}>
-    {props.label}
+    {label}
     <input
       id="user"
       type="checkbox"
       name="checkbox"
       className={styles.checkboxInput}
-      onChange={props.onChange}
+      onChange={onChange}
     />
     <span className={styles.checkboxElement}>check</span>
   </label>

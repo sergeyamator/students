@@ -2,24 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
 
-const Button = props => (
+const Button = ({ type, disabled, children }) => (
   <button
     className={styles.button}
-    type={props.type}
-    disabled={props.disabled}
+    type={type}
+    disabled={disabled}
   >
-    {props.children}
+    {children}
   </button>
 );
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
   disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   disabled: true,
+  type: 'button',
 };
 
 export { Button };

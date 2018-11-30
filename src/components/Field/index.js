@@ -6,24 +6,27 @@ function onChangeHandler(e, props) {
   props.onChange({ [props.name]: e.target.value });
 }
 
-const Field = props => (
-  <input
-    type={props.type}
-    className={styles.input}
-    name={props.name}
-    placeholder={props.placeholder}
-    required
-    onChange={(e) => {
-      onChangeHandler(e, props);
-    }}
-  />
-);
+const Field = (props) => {
+  const { type, name, placeholder } = props;
+
+  return (
+    <input
+      type={type}
+      className={styles.input}
+      name={name}
+      placeholder={placeholder}
+      required
+      onChange={(e) => {
+        onChangeHandler(e, props);
+      }}
+    />
+  );
+};
 
 Field.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
 };
 
 export { Field };

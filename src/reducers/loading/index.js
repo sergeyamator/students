@@ -1,11 +1,11 @@
 import {
-  LOAD,
+  REQUEST,
 } from '../../actions/actions';
 
 const initState = false;
 
 const loading = (state = initState, action) => {
-  if (action.type === LOAD) {
+  if (action.type === REQUEST) {
     return {
       loading: true,
     };

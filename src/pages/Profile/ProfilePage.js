@@ -16,15 +16,14 @@ class ProfilePage extends Component {
   static propTypes = {
     getMentorData: PropTypes.func.isRequired,
   }
+
   componentDidMount() {
     this.props.getMentorData();
   }
 
   render() {
     return (
-      <section className={styles.profile}>
-
-      </section>
+      <section className={styles.profile} />
     );
   }
 }

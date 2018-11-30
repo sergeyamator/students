@@ -1,58 +1,52 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Button, Checkbox, Title, Field } from '../../components/';
+import {
+  Button, Checkbox, Title, Field,
+} from '../../components';
 import { auth } from '../../actions';
 import { isLoggedIn } from '../../helpers';
 import styles from './style.scss';
 
 class AuthorizationForm extends Component {
-  static propTypes = {
-    auth: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    isLoggedIn: false,
-  }
-
   state = {
     newUser: false,
   }
 
   onInputChange = (data) => {
-    this.setState({
-      ...this.state,
+    this.setState(state => ({
+      ...state,
       ...data,
-    });
+    }));
   }
 
   onSave = (e) => {
     e.preventDefault();
+    const { state, props } = this;
 
-    if (this.state.newUser) {
-      this.props.auth('register', this.state);
+    if (state.newUser) {
+      props.auth('register', this.state);
       return;
     }
 
-    this.props.auth('login', this.state);
+    props.auth('login', this.state);
   }
 
   onCheckboxChange = (e) => {
-    this.setState({
-      ...this.state,
+    this.setState(state => ({
+      ...state,
       newUser: e.target.checked,
-    });
+    }));
   }
 
-  isDisabled = () => !(
-    this.state.email &&
-    this.state.password
-  )
+  isDisabled = () => {
+    const { state: { email, password } } = this;
+    return !(email && password);
+  }
 
   render() {
-    if (this.props.isLoggedIn) {
+    const { props, state } = this;
+    if (props.isLoggedIn) {
       return <Redirect to="/profile" />;
     }
 
@@ -62,11 +56,11 @@ class AuthorizationForm extends Component {
           method="post"
           className={styles.form}
           onSubmit={this.onSave}
-          name={this.state.newUser ? 'register' : 'login'}
+          name={state.newUser ? 'register' : 'login'}
         >
           <Title>Войти в личный кабинет</Title>
 
-          { this.state.newUser && (
+          { state.newUser && (
             <Field
               name="username"
               type="text"
@@ -94,7 +88,7 @@ class AuthorizationForm extends Component {
           />
 
           {
-            this.state.newUser && (
+            state.newUser && (
               <Field
                 name="passwordConfirm"
                 type="password"
@@ -135,4 +129,3 @@ const AuthorizationFormWithConnect = connect(
 )(AuthorizationForm);
 
 export { AuthorizationFormWithConnect };
-
