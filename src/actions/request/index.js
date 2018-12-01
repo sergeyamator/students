@@ -1,6 +1,9 @@
-import { REQUEST } from '../actions';
+import { REQUEST_START, REQUEST_FINISH } from '../actions';
 
-export const request = status => ({
-  type: REQUEST,
-  isFetching: status,
+export const requestStart = () => ({
+  type: REQUEST_START,
+});
+
+export const requestFinish = () => ({
+  type: REQUEST_FINISH,
 });

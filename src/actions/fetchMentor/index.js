@@ -6,15 +6,12 @@ import {
   FETCH_MENTOR_FAILED,
 } from '../actions';
 
-import { request } from '../request';
+import { requestStart, requestFinish } from '../request';
 
-const fetchSuccess = (data) => {
-  request(false);
-  return {
-    type: FETCH_MENTOR_SUCCESS,
-    payload: data,
-  };
-};
+const fetchSuccess = data => ({
+  type: FETCH_MENTOR_SUCCESS,
+  payload: data,
+});
 
 export const fetchFailed = error => ({
   type: FETCH_MENTOR_FAILED,
@@ -22,8 +19,7 @@ export const fetchFailed = error => ({
 });
 
 const fetchMentor = () => (dispatch) => {
-  dispatch(request(true));
-
+  dispatch(requestStart());
   const requestUrl = `${url.api}/mentor`;
   const options = {
     method: 'GET',
@@ -36,6 +32,7 @@ const fetchMentor = () => (dispatch) => {
   return fetch(requestUrl, options)
     .then(response => response.json())
     .then(response => dispatch(fetchSuccess(response)))
+    .then(() => dispatch(requestFinish()))
     .catch(error => dispatch(fetchFailed(error)));
 };
 

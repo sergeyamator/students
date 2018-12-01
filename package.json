@@ -13,7 +13,10 @@
     "run-backend": "nodemon backend/app.js"
   },
   "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "@material-ui/icons": "^3.0.1",
     "history": "^4.7.2",
+    "moment": "^2.22.2",
     "prop-types": "^15.5.10",
     "react": "^16.6.3",
     "react-addons-test-utils": "^15.6.2",

@@ -4,13 +4,12 @@ import {
   AUTH_FAILED,
   AUTH_LOGOUT,
 } from '../actions';
-import { request } from '../request';
+import { requestFinish, requestStart } from '../request';
 import { finishAuthentication } from '../../services';
 import { fetchMentor } from '../fetchMentor';
 import { authService } from '../../services/authService';
 
 const authSuccess = (token) => {
-  request(false);
   finishAuthentication(token);
 
   return {
@@ -32,8 +31,7 @@ const logout = () => {
 };
 
 const auth = (authUrl, data) => (dispatch) => {
-  dispatch(request(true));
-
+  dispatch(requestStart());
   const requestUrl = `${url.api}/${authUrl}`;
   const options = {
     method: 'POST',
@@ -47,6 +45,7 @@ const auth = (authUrl, data) => (dispatch) => {
     .then(response => response.json())
     .then(response => dispatch(authSuccess(response)))
     .then(() => dispatch(fetchMentor()))
+    .then(() => dispatch(requestFinish()))
     .catch(error => dispatch(authFailed(error)));
 };
 

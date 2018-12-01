@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
         res.json({
           email: mentor.email,
           username: mentor.username,
+          createdAt: mentor.created_at,
         });
       } catch (e) {
-        console.log(e);
         res.status(500);
         res.json(e);
       }

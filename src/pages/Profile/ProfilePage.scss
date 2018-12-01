@@ -1,3 +1,19 @@
-.profile {
-  color: white;
+.container {
+  padding: 15px 15px 0 15px;
+}
+
+.avatar {
+  span {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 2px solid #3e4eb8;
+    margin: auto;
+  }
+}
+
+.notEdintingWrapper {
+  text-align: center;
 }

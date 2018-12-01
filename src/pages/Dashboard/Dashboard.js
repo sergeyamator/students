@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './style.scss';
 
+
+const mapStateToProps = () => ({
+
+});
+
+function mapDispatchToProps() {
+  return {
+
+  };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Dashboard extends Component {
   static propTypes = {
 
@@ -19,20 +30,5 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
 
-});
-
-function mapDispatchToProps(dispatch) {
-  return {
-
-  };
-}
-
-const DashboardWithConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Dashboard);
-
-export { DashboardWithConnect };
-
+export { Dashboard };

@@ -32,10 +32,10 @@ class AuthorizationForm extends Component {
     props.auth('login', this.state);
   }
 
-  onCheckboxChange = (e) => {
+  onCheckboxChange = ({ target }) => {
     this.setState(state => ({
       ...state,
-      newUser: e.target.checked,
+      newUser: target.checked,
     }));
   }
 

@@ -6,8 +6,9 @@ import {
 const mentor = (state = {}, action) => {
   if (action.type === FETCH_MENTOR_SUCCESS) {
     return {
-      username: action.payload.name,
+      username: action.payload.username,
       email: action.payload.email,
+      createdAt: action.payload.createdAt,
     };
   }
 

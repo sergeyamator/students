@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { isLoggedIn as isLoggedInService } from '../../../helpers';
 
@@ -10,6 +10,7 @@ function mapStateToProps(state) {
   };
 }
 
+@withRouter
 @connect(mapStateToProps)
 class PrivateRoutes extends Component {
   static propTypes = {

@@ -1,14 +1,15 @@
 import {
-  REQUEST,
+  REQUEST_START,
+  REQUEST_FINISH,
 } from '../../actions/actions';
 
-const initState = false;
+const loading = (state = false, action) => {
+  if (action.type === REQUEST_START) {
+    return true;
+  }
 
-const loading = (state = initState, action) => {
-  if (action.type === REQUEST) {
-    return {
-      loading: true,
-    };
+  if (action.type === REQUEST_FINISH) {
+    return false;
   }
 
   return state;

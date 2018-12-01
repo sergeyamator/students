@@ -1,3 +1,33 @@
 .header {
   background-color: #2196f3;
+
+  .headerInner {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .menuButton {
+    margin-left: 15px;
+  
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
+
+.menu {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+  margin-left: 15px;
+}
+
+
