@@ -15,6 +15,10 @@ const MentorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  technologies: {
+    type: String,
+    trim: true,
+  },
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Mentor', MentorSchema);

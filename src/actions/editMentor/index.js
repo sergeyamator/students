@@ -2,31 +2,31 @@ import { url } from '../../config/url';
 import { getToken } from '../../services';
 
 import {
-  FETCH_MENTOR_SUCCESS,
-  FETCH_MENTOR_FAILED,
+  EDIT_MENTOR_SUCCESS,
+  EDIT_MENTOR_FAILED,
 } from '../actions';
 
 import { requestStart, requestFinish } from '../request';
 
 const fetchSuccess = data => ({
-  type: FETCH_MENTOR_SUCCESS,
+  type: EDIT_MENTOR_SUCCESS,
   payload: data,
 });
 
 const fetchFailed = error => ({
-  type: FETCH_MENTOR_FAILED,
+  type: EDIT_MENTOR_FAILED,
   payload: error,
 });
 
-const fetchMentor = () => (dispatch) => {
+const editMentor = data => (dispatch) => {
   dispatch(requestStart());
   const requestUrl = `${url.api}/mentor`;
   const options = {
-    method: 'GET',
+    method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${getToken()}`,
     },
+    body: data,
   };
 
   return fetch(requestUrl, options)
@@ -36,4 +36,4 @@ const fetchMentor = () => (dispatch) => {
     .catch(error => dispatch(fetchFailed(error)));
 };
 
-export { fetchMentor };
+export { editMentor };

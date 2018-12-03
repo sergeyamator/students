@@ -1,4 +1,6 @@
 .container {
+  max-width: 1000px;
+  margin: auto;
   padding: 15px 15px 0 15px;
 }
 
@@ -16,4 +18,52 @@
 
 .notEdintingWrapper {
   text-align: center;
+}
+
+.form {
+  .formControl {
+    display: block;
+  }
+  
+  input {
+    width: 400px;
+  }
+
+  .uploadButton {
+    margin-right: 15px;
+    svg {
+      margin-left: 10px;
+    }
+  }
+}
+
+.buttons {
+  margin-top: 40px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.formContainer {
+  margin-bottom: 20px;
+}
+
+.uploadInput {
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+}
+
+.uploadArea {
+  display: flex;
+  align-items: center
+}
+
+.hidden {
+  display: none;
+}
+
+.showed {
+  display: block;
 }
