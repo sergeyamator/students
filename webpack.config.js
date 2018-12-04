@@ -11,7 +11,7 @@ const PORT = process.env.PORT || '8888';
 
 module.exports = {
   entry: [
-    './src/index.js', // your app's entry point
+    './frontend/index.js', // your app's entry point
   ],
   devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',
   output: {
