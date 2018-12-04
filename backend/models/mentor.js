@@ -19,6 +19,10 @@ const MentorSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  avatar: {
+    type: String,
+    trim: true,
+  },
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Mentor', MentorSchema);

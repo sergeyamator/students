@@ -15,7 +15,7 @@ module.exports = (app) => {
 
   app.use('/api/students', jwtCheck, studentsController);
 
-  app.use((err, req, res, next) => {
+  app.use((err, req, res) => { // next 4 params
     console.log('Tracking error', JSON.stringify(err, false, 2));
 
     res
@@ -25,6 +25,5 @@ module.exports = (app) => {
         error: err.message,
         status: err.status,
       });
-
   });
 };

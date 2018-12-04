@@ -13,6 +13,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { editMentor } from '../../actions';
 import { getMentor } from '../../helpers';
 import styles from './ProfilePage.scss';
+import { url } from '../../config';
 
 const mapStateToProps = state => ({
   mentor: getMentor(state),
@@ -85,7 +86,7 @@ class ProfilePage extends Component {
   handleselectedFile = ({ target }) => {
     const file = target.files[0];
 
-    if (file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+    if (file && file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
       this.previewFile(file);
       this.setState({
         selectedFile: file,
@@ -99,7 +100,7 @@ class ProfilePage extends Component {
 
     formData.append('username', this.state.username);
     formData.append('email', this.state.email);
-    formData.append('teck', this.state.technologies);
+    formData.append('technologies', this.state.technologies);
     formData.append('avatar', this.state.selectedFile);
 
     this.props.saveMentor(formData);
@@ -135,7 +136,7 @@ class ProfilePage extends Component {
                 <Grid item xs={5}>
                   <Card>
                     <CardContent className={styles.avatar}>
-                      { avatar ? <img src={avatar} alt={username} /> : <span /> }
+                      { avatar ? <img src={`${url.avatar}${avatar}`} alt={username} /> : <span /> }
                     </CardContent>
                     <CardContent>
                       <span>name:</span>
@@ -178,7 +179,6 @@ class ProfilePage extends Component {
                           onChange={this.handleChange}
                         />
                       </FormControl>
-
 
                       <FormControl className={styles.formControl}>
                         <InputLabel htmlFor="component-simple">Technologies</InputLabel>
@@ -236,7 +236,7 @@ class ProfilePage extends Component {
                   <CardContent className={styles.avatar}>
                     {
                   avatar
-                    ? <img src={avatar} alt={username} />
+                    ? <img src={`${url.avatar}${avatar}`} alt={username} />
                     : <span />
                 }
                   </CardContent>
@@ -259,7 +259,7 @@ class ProfilePage extends Component {
 
                   <CardContent>
               technologies:
-              html, css, javascript
+                    {technologies}
                   </CardContent>
                 </Card>
               </Grid>
