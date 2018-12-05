@@ -3,7 +3,7 @@ import {
   BrowserRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
 import {
-  AuthorizationForm, ProfilePage, Dashboard, MainLayout,
+  AuthorizationForm, ProfilePage, Dashboard, MainLayout, Students,
 } from '../../pages';
 import { PrivateRoutes } from './privateRoutes';
 
@@ -15,6 +15,7 @@ const Routes = () => (
         <PrivateRoutes>
           <Route path="/profile" component={ProfilePage} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/students" component={Students} />
         </PrivateRoutes>
       </MainLayout>
       <Redirect from="*" to="/login" />
