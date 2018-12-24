@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  mentor: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'Mentor',
+  },
 });
 
 module.exports = mongoose.model('Student', UserSchema);

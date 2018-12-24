@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('../models/students');
+require('../../models/students');
 
 const router = express.Router();
 const Students = mongoose.model('Student');
 
 router.get('/', getStudents);
-router.get('/:id/edit', editStudent);
+router.get('/:id', getStudentById);
 
 router.post('/', saveNewStudent);
 router.post('/:id', updateStudent);
@@ -20,16 +20,23 @@ async function getStudents(req, res) {
   }
 }
 
-async function editStudent(req, res) {
+async function getStudentById(req, res) {
   const { id } = req.params;
-  const student = await Students.findOne({ _id: id });
 
-  res.json(student);
+  try {
+    const student = await Students.findOne({ _id: id }).populate('mentor');
+    res.json(student);
+  } catch (err) {
+    res.json(err)
+  }
 }
 
 async function saveNewStudent(req, res) {
+  const student = {...req.body, ...{mentor: mongoose.Types.ObjectId(req.body.mentor)}}
+  console.log(student)
+  console.log(typeof mongoose.Types.ObjectId(req.body.mentor))
   try {
-    const user = new Students(req.body);
+    const user = new Students(student);
     await user.save();
     res.send('saved');
   } catch (e) {

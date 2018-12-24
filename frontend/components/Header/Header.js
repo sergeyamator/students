@@ -35,6 +35,15 @@ export const Header = ({
           >
             dashboard
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.menuButton}
+            component={Link}
+            to="/students"
+          >
+            students
+          </Button>
         </div>
 
         <p className={styles.userInfo}>
