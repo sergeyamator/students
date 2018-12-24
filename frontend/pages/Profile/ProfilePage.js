@@ -105,7 +105,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { mentor } = this.props;
 
     if (!mentor) {
