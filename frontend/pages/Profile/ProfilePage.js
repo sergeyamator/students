@@ -38,17 +38,16 @@ class ProfilePage extends Component {
     saveMentor: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...this.getInitialState(),
-    };
+  state = {}
+
+  componentWillReceiveProps(props) {
+    this.setState(this.getInitialState(props.mentor));
   }
 
-  getInitialState = () => ({
-    username: this.props.mentor && this.props.mentor.username || '',
-    email: this.props.mentor && this.props.mentor.email || '',
-    technologies: this.props.mentor && this.props.mentor.technologies || '',
+  getInitialState = mentor => ({
+    username: mentor && mentor.username || '',
+    email: mentor && mentor.email || '',
+    technologies: mentor && mentor.technologies || '',
   })
 
   onEditClick = () => {
@@ -104,6 +103,9 @@ class ProfilePage extends Component {
     formData.append('avatar', this.state.selectedFile);
 
     this.props.saveMentor(formData);
+    this.setState({
+      isEditing: false,
+    });
   }
 
   render() {

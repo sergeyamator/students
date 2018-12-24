@@ -1,24 +1,23 @@
 import { url } from '../../config/url';
 import {
-  AUTH_SUCCESS,
-  AUTH_FAILED,
+  AUTH,
   AUTH_LOGOUT,
 } from '../actions';
 import { requestFinish, requestStart } from '../request';
 import { finishAuthentication } from '../../services';
-import { fetchMentor } from '../fetchMentor';
+import { fetchMentor } from '../mentor';
 import { authService } from '../../services/authService';
 
 const authSuccess = (token) => {
   finishAuthentication(token);
 
   return {
-    type: AUTH_SUCCESS,
+    type: `${AUTH}_SUCCESS`,
   };
 };
 
 const authFailed = error => ({
-  type: AUTH_FAILED,
+  type: `${AUTH}_FAILED`,
   payload: error,
 });
 

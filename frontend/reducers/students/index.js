@@ -1,7 +1,7 @@
-import { GET_STUDENTS_SUCCESS } from '../../actions';
+import { GET_STUDENTS } from '../../actions';
 
 const students = (state = [], action) => {
-  if (action.type === GET_STUDENTS_SUCCESS) {
+  if (action.type === `${GET_STUDENTS}_SUCCESS`) {
     return action.payload;
   }
 
