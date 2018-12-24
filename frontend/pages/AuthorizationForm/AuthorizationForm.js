@@ -5,7 +5,7 @@ import {
   Button, Checkbox, Title, Field,
 } from '../../components';
 import { auth } from '../../actions';
-import { isLoggedIn } from '../../helpers';
+import { isLoggedIn } from '../../selectors/index';
 import styles from './style.scss';
 
 class AuthorizationForm extends Component {

@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { fetchStudents } from '../../actions';
 import { StudentForm } from './StudentForm';
-import { isLoggedIn, getStudents } from '../../helpers';
+import { isLoggedIn, getStudents } from '../../selectors';
 
 import styles from './Students.scss';
 
@@ -33,7 +33,7 @@ class Students extends Component {
 
   static propTypes = {
     getStudents: PropTypes.func.isRequired,
-    students: PropTypes.arrayOf,
+    students: PropTypes.arrayOf(PropTypes.shape()),
   }
 
   static defaultProps = {

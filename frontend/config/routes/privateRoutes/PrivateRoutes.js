@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { isLoggedIn as isLoggedInService } from '../../../helpers';
+import { isLoggedIn as isLoggedInService } from '../../../selectors/index';
 
 function mapStateToProps(state) {
   return {

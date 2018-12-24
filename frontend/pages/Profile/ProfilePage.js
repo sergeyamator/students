@@ -11,7 +11,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { editMentor } from '../../actions';
-import { getMentor } from '../../helpers';
+import { getMentor } from '../../selectors';
 import styles from './ProfilePage.scss';
 import { url } from '../../config';
 

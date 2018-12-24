@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Header } from '../../components';
-import { isLoggedIn, getMentor, getLoadingState } from '../../helpers';
+import { isLoggedIn, getMentor, getLoadingState } from '../../selectors/index';
 import { logout, fetchMentor } from '../../actions';
 
 
