@@ -1,61 +1,91 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import Fab from '@material-ui/core/Fab';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import {auth} from '../../actions';
-import {isLoggedIn} from '../../helpers';
+import { fetchStudents } from '../../actions';
+import { StudentForm } from './StudentForm';
+import { isLoggedIn, getStudents } from '../../helpers';
+
 import styles from './Students.scss';
 
-@connect(mapStateToProps, mapDispatchToProps)
-class Students extends Component {
-    state = {}
-
-    onButtonClick = (evt) => {
-        console.log(evt);
-    };
-
-    render() {
-        const {props} = this;
-        if (props.isLoggedIn) {
-            return <Redirect to="/profile" /> ;
-        }
-
-        return (
-            <section className={styles.wrapper}>
-                <div className={styles.information}></div>
-                <div className={styles.students}>
-                    <List component="nav">
-                        <ListItem button>
-                            <ListItemText primary="Имя Фамилия" />
-                        </ListItem>
-                        <ListItem button>
-                            <ListItemText primary="Имя Фамилия" />
-                        </ListItem>
-                    </List>
-                    <Fab aria-label="Add" className={styles.studentsAdd}>
-                        Добавить студента
-                        <AddIcon className={styles.iconAdd}/>
-                    </Fab>
-                </div>
-            </section>
-        );
-}
-}
-
 const mapStateToProps = state => ({
-    isLoggedIn: isLoggedIn(state),
+  isLoggedIn: isLoggedIn(state),
+  students: getStudents(state),
 });
 
 function mapDispatchToProps(dispatch) {
-    return {
-        auth(url, userData) {
-            dispatch(auth(url, userData));
-        },
-    };
+  return {
+    getStudents() {
+      dispatch(fetchStudents());
+    },
+  };
 }
 
-export {Students};
+@connect(mapStateToProps, mapDispatchToProps)
+class Students extends Component {
+  state = {
+    newStudent: false,
+  }
+
+  static propTypes = {
+    getStudents: PropTypes.func.isRequired,
+    students: PropTypes.arrayOf,
+  }
+
+  static defaultProps = {
+    students: [],
+  }
+
+  componentDidMount() {
+    this.props.getStudents();
+  }
+
+  get students() {
+    return this.props.students.map(student => (
+      <ListItem button key={student._id}>
+        <ListItemText primary={`${student.name} ${student.lastName}`} />
+      </ListItem>
+    ));
+  }
+
+  handleAddNewStudentClick = () => {
+    this.setState({
+      newStudent: true,
+    });
+  }
+
+  handleBackClick = () => {
+    this.setState({
+      newStudent: false,
+    });
+  }
+
+  render() {
+    const { state } = this;
+
+    if (state.newStudent) {
+      return <StudentForm onBackClick={this.handleBackClick} />;
+    }
+
+    return (
+      <section className={styles.wrapper}>
+        <div className={styles.information} />
+        <div className={styles.students}>
+          <List component="nav">
+            { this.students }
+          </List>
+          <Button aria-label="Add" className={styles.studentsAdd} onClick={this.handleAddNewStudentClick}>
+            Добавить студента
+            <AddIcon className={styles.iconAdd} />
+          </Button>
+        </div>
+      </section>
+    );
+  }
+}
+
+export { Students };

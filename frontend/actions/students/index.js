@@ -1,26 +1,23 @@
+import { GET_STUDENTS_SUCCESS, GET_STUDENT_FAILED } from '../actions';
+
 import { url } from '../../config/url';
 import { getToken } from '../../services';
-
-import {
-  FETCH_MENTOR_SUCCESS,
-  FETCH_MENTOR_FAILED,
-} from '../actions';
 
 // import { requestStart, requestFinish } from '../request';
 
 const fetchSuccess = data => ({
-  type: FETCH_MENTOR_SUCCESS,
+  type: GET_STUDENTS_SUCCESS,
   payload: data,
 });
 
 const fetchFailed = error => ({
-  type: FETCH_MENTOR_FAILED,
+  type: GET_STUDENT_FAILED,
   payload: error,
 });
 
-const fetchMentor = () => (dispatch) => {
+const fetchStudents = () => (dispatch) => {
   // dispatch(requestStart());
-  const requestUrl = `${url.api}/mentor`;
+  const requestUrl = `${url.api}/students`;
   const options = {
     method: 'GET',
     headers: {
@@ -36,4 +33,4 @@ const fetchMentor = () => (dispatch) => {
     .catch(error => dispatch(fetchFailed(error)));
 };
 
-export { fetchMentor };
+export { fetchStudents };
