@@ -40,10 +40,6 @@ class ProfilePage extends Component {
 
   state = {}
 
-  componentWillReceiveProps(props) {
-    this.setState(this.getInitialState(props.mentor));
-  }
-
   getInitialState = mentor => ({
     username: mentor && mentor.username || '',
     email: mentor && mentor.email || '',
@@ -78,7 +74,7 @@ class ProfilePage extends Component {
   handleBackClick = () => {
     this.setState({
       isEditing: false,
-      ...this.getInitialState(),
+      ...this.getInitialState(this.props.mentor),
     });
   }
 
@@ -109,6 +105,7 @@ class ProfilePage extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { mentor } = this.props;
 
     if (!mentor) {
@@ -122,11 +119,12 @@ class ProfilePage extends Component {
 
 
     const {
-      email,
       isEditing,
-      username,
-      technologies,
     } = this.state;
+
+    const email = this.state.email || this.props.mentor.email;
+    const username = this.state.username || this.props.mentor.username;
+    const technologies = this.state.technologies || this.props.mentor.technologies;
 
     return (
       <Grid container className={styles.container}>
