@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import { fetchStudents } from '../../actions';
 import { StudentForm } from './StudentForm';
-import { isLoggedIn, getStudents } from '../../selectors';
+import { getStudents } from '../../selectors';
 
 import styles from './Students.scss';
 
 const mapStateToProps = state => ({
-  isLoggedIn: isLoggedIn(state),
   students: getStudents(state),
 });
 
@@ -47,7 +46,9 @@ class Students extends Component {
   get students() {
     return this.props.students.map(student => (
       <ListItem button key={student._id}>
-        <ListItemText primary={`${student.name} ${student.lastName}`} />
+        <Link to={`/students/${student._id}`} className={styles.studentLink}>
+          {`${student.name} ${student.lastName}`}
+        </Link>
       </ListItem>
     ));
   }

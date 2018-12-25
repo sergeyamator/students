@@ -24,17 +24,15 @@ async function getStudentById(req, res) {
   const { id } = req.params;
 
   try {
-    const student = await Students.findOne({ _id: id }).populate('mentor');
+    const student = await Students.findOne({ _id: id }); // .populate('mentor'); Does it need ?
     res.json(student);
   } catch (err) {
-    res.json(err)
+    res.json(err);
   }
 }
 
 async function saveNewStudent(req, res) {
-  const student = {...req.body, ...{mentor: mongoose.Types.ObjectId(req.body.mentor)}}
-  console.log(student)
-  console.log(typeof mongoose.Types.ObjectId(req.body.mentor))
+  const student = { ...req.body, ...{ mentor: mongoose.Types.ObjectId(req.body.mentor) } };
   try {
     const user = new Students(student);
     await user.save();
